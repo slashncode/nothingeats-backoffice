@@ -24,6 +24,11 @@ const environment = z.object({
     S3__SECRET_KEY: z.string().default(''),
     // Public path of the bucket (Garage's website endpoint behind the gateway).
     MEDIA__PUBLIC_PATH: z.string().default('/media'),
+    KAFKA__BOOTSTRAP_SERVERS: z.string().default('localhost:19094'),
+    // Only the serving process relays; CLI runs (types, import map, migrations) leave it off.
+    OUTBOX__RELAY_ENABLED: z.stringbool().default(false),
+    OUTBOX__POLL_INTERVAL_MS: z.coerce.number().int().positive().default(500),
+    OUTBOX__RETENTION_DAYS: z.coerce.number().int().positive().default(7),
 });
 
 export interface Config {
@@ -34,6 +39,8 @@ export interface Config {
     cookie: { secure: boolean };
     s3: { endpoint: string; region: string; bucket: string; accessKey: string; secretKey: string };
     media: { publicPath: string };
+    kafka: { bootstrapServers: string[] };
+    outbox: { relayEnabled: boolean; pollIntervalMs: number; retentionDays: number };
 }
 
 export function loadConfig(source: Record<string, string | undefined> = process.env): Config {
@@ -63,5 +70,13 @@ export function loadConfig(source: Record<string, string | undefined> = process.
             secretKey: env.S3__SECRET_KEY,
         },
         media: { publicPath: env.MEDIA__PUBLIC_PATH },
+        kafka: {
+            bootstrapServers: env.KAFKA__BOOTSTRAP_SERVERS.split(',').map(server => server.trim()),
+        },
+        outbox: {
+            relayEnabled: env.OUTBOX__RELAY_ENABLED,
+            pollIntervalMs: env.OUTBOX__POLL_INTERVAL_MS,
+            retentionDays: env.OUTBOX__RETENTION_DAYS,
+        },
     };
 }

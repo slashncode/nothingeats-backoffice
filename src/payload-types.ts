@@ -79,8 +79,12 @@ export interface Config {
   };
   blocks: {};
   collections: {
-    admins: Admin;
+    restaurants: Restaurant;
+    dishes: Dish;
+    deals: Deal;
+    badges: Badge;
     media: Media;
+    admins: Admin;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -89,8 +93,12 @@ export interface Config {
   };
   collectionsJoins: {};
   collectionsSelect: {
-    admins: AdminsSelect<false> | AdminsSelect<true>;
+    restaurants: RestaurantsSelect<false> | RestaurantsSelect<true>;
+    dishes: DishesSelect<false> | DishesSelect<true>;
+    deals: DealsSelect<false> | DealsSelect<true>;
+    badges: BadgesSelect<false> | BadgesSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
+    admins: AdminsSelect<false> | AdminsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -101,8 +109,14 @@ export interface Config {
     defaultIDType: string;
   };
   fallbackLocale: ('false' | 'none' | 'null') | false | null | ('de' | 'en') | ('de' | 'en')[];
-  globals: {};
-  globalsSelect: {};
+  globals: {
+    'deal-planner': DealPlanner;
+    wheel: Wheel;
+  };
+  globalsSelect: {
+    'deal-planner': DealPlannerSelect<false> | DealPlannerSelect<true>;
+    wheel: WheelSelect<false> | WheelSelect<true>;
+  };
   locale: 'de' | 'en';
   widgets: {
     welcome: WelcomeWidget;
@@ -137,13 +151,35 @@ export interface AdminAuthOperations {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "admins".
+ * via the `definition` "restaurants".
  */
-export interface Admin {
+export interface Restaurant {
   id: string;
-  identityId: string;
-  email: string;
-  lastLoginAt?: string | null;
+  name: string;
+  /**
+   * Part of the address, e.g. phantom-pizza. Better not changed later.
+   */
+  slug: string;
+  description: string;
+  cuisine: 'american' | 'asian' | 'desserts' | 'greek' | 'hawaiian' | 'indian' | 'italian' | 'japanese';
+  image?: (string | null) | Media;
+  rating: number;
+  deliveryMinutes: number;
+  deliveryFee: number;
+  minimumOrder: number;
+  opensAt: string;
+  /**
+   * Past midnight works: 18:00–02:00.
+   */
+  closesAt: string;
+  location: {
+    latitude: number;
+    longitude: number;
+  };
+  /**
+   * Leaves the shop; past orders stay.
+   */
+  archived?: boolean | null;
   createdBy?: {
     relationTo: 'admins';
     value: string | Admin;
@@ -154,7 +190,7 @@ export interface Admin {
   } | null;
   updatedAt: string;
   createdAt: string;
-  collection: 'admins';
+  _status?: ('draft' | 'published') | null;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -219,6 +255,172 @@ export interface Media {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "admins".
+ */
+export interface Admin {
+  id: string;
+  identityId: string;
+  email: string;
+  lastLoginAt?: string | null;
+  createdBy?: {
+    relationTo: 'admins';
+    value: string | Admin;
+  } | null;
+  updatedBy?: {
+    relationTo: 'admins';
+    value: string | Admin;
+  } | null;
+  updatedAt: string;
+  createdAt: string;
+  collection: 'admins';
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "dishes".
+ */
+export interface Dish {
+  id: string;
+  name: string;
+  restaurant: string | Restaurant;
+  slug: string;
+  section: string;
+  position: number;
+  description: string;
+  image?: (string | null) | Media;
+  price: number;
+  calories: number;
+  spiceLevel: number;
+  dietary?: ('vegan' | 'vegetarian' | 'gluten_free' | 'lactose_free' | 'halal')[] | null;
+  allergens?:
+    | (
+        | 'gluten'
+        | 'crustaceans'
+        | 'eggs'
+        | 'fish'
+        | 'peanuts'
+        | 'soybeans'
+        | 'milk'
+        | 'nuts'
+        | 'celery'
+        | 'mustard'
+        | 'sesame'
+        | 'sulphites'
+        | 'lupin'
+        | 'molluscs'
+      )[]
+    | null;
+  /**
+   * Search filters and the Craving Coach use these.
+   */
+  moods?:
+    | (
+        | 'cheesy'
+        | 'classic'
+        | 'comfort'
+        | 'creamy'
+        | 'crispy'
+        | 'fresh'
+        | 'hearty'
+        | 'light'
+        | 'salty'
+        | 'sharable'
+        | 'spicy'
+        | 'sweet'
+        | 'umami'
+      )[]
+    | null;
+  available?: boolean | null;
+  /**
+   * Leaves the menu; past orders stay.
+   */
+  archived?: boolean | null;
+  createdBy?: {
+    relationTo: 'admins';
+    value: string | Admin;
+  } | null;
+  updatedBy?: {
+    relationTo: 'admins';
+    value: string | Admin;
+  } | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "deals".
+ */
+export interface Deal {
+  id: string;
+  title?: string | null;
+  dish: string | Dish;
+  percentOff: number;
+  startsAt: string;
+  endsAt: string;
+  cancelled?: boolean | null;
+  createdBy?: {
+    relationTo: 'admins';
+    value: string | Admin;
+  } | null;
+  updatedBy?: {
+    relationTo: 'admins';
+    value: string | Admin;
+  } | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "badges".
+ */
+export interface Badge {
+  id: string;
+  name: string;
+  /**
+   * Fixed once created, e.g. night-owl.
+   */
+  key: string;
+  description: string;
+  tier: 'BRONZE' | 'SILVER' | 'GOLD';
+  rule: {
+    type:
+      | 'orders'
+      | 'restaurants'
+      | 'streak'
+      | 'level'
+      | 'orderItems'
+      | 'caloriesAvoided'
+      | 'stampCards'
+      | 'dealOrders'
+      | 'couponOrders'
+      | 'orderTotal'
+      | 'moneyNotSpent'
+      | 'placedBetween'
+      | 'wheelPrize';
+    min?: number | null;
+    minimum?: number | null;
+    fromHour: number;
+    toHour: number;
+  };
+  position: number;
+  /**
+   * Inactive badges can no longer be earned; earned ones stay.
+   */
+  active?: boolean | null;
+  createdBy?: {
+    relationTo: 'admins';
+    value: string | Admin;
+  } | null;
+  updatedBy?: {
+    relationTo: 'admins';
+    value: string | Admin;
+  } | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -242,12 +444,28 @@ export interface PayloadLockedDocument {
   id: string;
   document?:
     | ({
-        relationTo: 'admins';
-        value: string | Admin;
+        relationTo: 'restaurants';
+        value: string | Restaurant;
+      } | null)
+    | ({
+        relationTo: 'dishes';
+        value: string | Dish;
+      } | null)
+    | ({
+        relationTo: 'deals';
+        value: string | Deal;
+      } | null)
+    | ({
+        relationTo: 'badges';
+        value: string | Badge;
       } | null)
     | ({
         relationTo: 'media';
         value: string | Media;
+      } | null)
+    | ({
+        relationTo: 'admins';
+        value: string | Admin;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -315,16 +533,100 @@ export interface PayloadLlmInstruction {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
- * via the `definition` "admins_select".
+ * via the `definition` "restaurants_select".
  */
-export interface AdminsSelect<T extends boolean = true> {
-  identityId?: T;
-  email?: T;
-  lastLoginAt?: T;
+export interface RestaurantsSelect<T extends boolean = true> {
+  name?: T;
+  slug?: T;
+  description?: T;
+  cuisine?: T;
+  image?: T;
+  rating?: T;
+  deliveryMinutes?: T;
+  deliveryFee?: T;
+  minimumOrder?: T;
+  opensAt?: T;
+  closesAt?: T;
+  location?:
+    | T
+    | {
+        latitude?: T;
+        longitude?: T;
+      };
+  archived?: T;
   createdBy?: T;
   updatedBy?: T;
   updatedAt?: T;
   createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "dishes_select".
+ */
+export interface DishesSelect<T extends boolean = true> {
+  name?: T;
+  restaurant?: T;
+  slug?: T;
+  section?: T;
+  position?: T;
+  description?: T;
+  image?: T;
+  price?: T;
+  calories?: T;
+  spiceLevel?: T;
+  dietary?: T;
+  allergens?: T;
+  moods?: T;
+  available?: T;
+  archived?: T;
+  createdBy?: T;
+  updatedBy?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "deals_select".
+ */
+export interface DealsSelect<T extends boolean = true> {
+  title?: T;
+  dish?: T;
+  percentOff?: T;
+  startsAt?: T;
+  endsAt?: T;
+  cancelled?: T;
+  createdBy?: T;
+  updatedBy?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "badges_select".
+ */
+export interface BadgesSelect<T extends boolean = true> {
+  name?: T;
+  key?: T;
+  description?: T;
+  tier?: T;
+  rule?:
+    | T
+    | {
+        type?: T;
+        min?: T;
+        minimum?: T;
+        fromHour?: T;
+        toHour?: T;
+      };
+  position?: T;
+  active?: T;
+  createdBy?: T;
+  updatedBy?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -390,6 +692,19 @@ export interface MediaSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "admins_select".
+ */
+export interface AdminsSelect<T extends boolean = true> {
+  identityId?: T;
+  email?: T;
+  lastLoginAt?: T;
+  createdBy?: T;
+  updatedBy?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv_select".
  */
 export interface PayloadKvSelect<T extends boolean = true> {
@@ -446,6 +761,130 @@ export interface PayloadLlmInstructionsSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "deal-planner".
+ */
+export interface DealPlanner {
+  id: string;
+  enabled?: boolean | null;
+  concurrent: number;
+  durationsMinutes: number[];
+  percentages: number[];
+  minimumPrice: number;
+  createdBy?: {
+    relationTo: 'admins';
+    value: string | Admin;
+  } | null;
+  updatedBy?: {
+    relationTo: 'admins';
+    value: string | Admin;
+  } | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "wheel".
+ */
+export interface Wheel {
+  id: string;
+  prizes: {
+    key: string;
+    kind: 'PERCENT' | 'AMOUNT' | 'FREE_DELIVERY' | 'FREE_DISH' | 'BONUS_XP' | 'BADGE';
+    label: string;
+    percent?: number | null;
+    amount?: number | null;
+    maxDiscount?: number | null;
+    minimumOrder?: number | null;
+    xp?: number | null;
+    /**
+     * Who has it already gets bonus XP instead.
+     */
+    badgeKey?: string | null;
+    id?: string | null;
+  }[];
+  /**
+   * "default" applies to everyone; other profiles are named after the variants of the PostHog flag spin-wheel-odds.
+   */
+  profiles: {
+    name: string;
+    weights?:
+      | {
+          prize: string;
+          weight: number;
+          id?: string | null;
+        }[]
+      | null;
+    id?: string | null;
+  }[];
+  createdBy?: {
+    relationTo: 'admins';
+    value: string | Admin;
+  } | null;
+  updatedBy?: {
+    relationTo: 'admins';
+    value: string | Admin;
+  } | null;
+  _status?: ('draft' | 'published') | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "deal-planner_select".
+ */
+export interface DealPlannerSelect<T extends boolean = true> {
+  enabled?: T;
+  concurrent?: T;
+  durationsMinutes?: T;
+  percentages?: T;
+  minimumPrice?: T;
+  createdBy?: T;
+  updatedBy?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "wheel_select".
+ */
+export interface WheelSelect<T extends boolean = true> {
+  prizes?:
+    | T
+    | {
+        key?: T;
+        kind?: T;
+        label?: T;
+        percent?: T;
+        amount?: T;
+        maxDiscount?: T;
+        minimumOrder?: T;
+        xp?: T;
+        badgeKey?: T;
+        id?: T;
+      };
+  profiles?:
+    | T
+    | {
+        name?: T;
+        weights?:
+          | T
+          | {
+              prize?: T;
+              weight?: T;
+              id?: T;
+            };
+        id?: T;
+      };
+  createdBy?: T;
+  updatedBy?: T;
+  _status?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "welcome_widget".
  */
 export interface WelcomeWidget {
@@ -471,7 +910,7 @@ export interface CollectionsWidget {
 export interface CollectionQueryWidget {
   data?: {
     title?: string | null;
-    relatedCollection: 'admins' | 'media';
+    relatedCollection: 'restaurants' | 'dishes' | 'deals' | 'badges' | 'media' | 'admins';
     where?:
       | {
           [k: string]: unknown;
@@ -493,7 +932,7 @@ export interface CollectionQueryWidget {
  */
 export interface ActivityWidget {
   data?: {
-    excludedCollections?: ('admins' | 'media')[] | null;
+    excludedCollections?: ('restaurants' | 'dishes' | 'deals' | 'badges' | 'media' | 'admins')[] | null;
   };
   width: 'small' | 'medium' | 'large' | 'x-large' | 'full';
 }

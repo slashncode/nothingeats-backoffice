@@ -21,6 +21,20 @@ export default defineConfig(
                 }),
                 viteReact(pluginOptions.react),
             ],
+            // The Kafka client loads its WASM and its schema validator (ajv) at runtime; inlined by
+            // Vite's module runner they break. Node loads it from node_modules instead.
+            environments: {
+                ssr: {
+                    resolve: {
+                        external: ['@platformatic/kafka'],
+                    },
+                },
+                rsc: {
+                    resolve: {
+                        external: ['@platformatic/kafka'],
+                    },
+                },
+            },
             // The shop serves /assets itself; the admin's files live under /admin like the rest of it.
             build: {
                 assetsDir: 'admin/assets',

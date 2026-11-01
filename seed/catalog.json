@@ -1,0 +1,1716 @@
+{
+    "restaurants": [
+        {
+            "id": "b842462f-a36d-4050-97c4-dd0e7cf86737",
+            "slug": "air-burger",
+            "name": "Air Burger",
+            "description": {
+                "de": "Smash-Burger mit Röstaromen, die nur in deinem Kopf brutzeln. Geöffnet bis 2 Uhr.",
+                "en": "Smash burgers with a sear that only sizzles in your head. Open until 2 a.m."
+            },
+            "cuisine": "american",
+            "rating": 4.3,
+            "deliveryMinutes": 30,
+            "deliveryFeeCents": 0,
+            "minimumOrderCents": 1500,
+            "latitude": 53.5537,
+            "longitude": 9.9271,
+            "opensAt": "11:00",
+            "closesAt": "02:00",
+            "dishes": [
+                {
+                    "id": "5db20ee8-5a94-47b9-adbf-9b6d30dbe911",
+                    "slug": "the-big-nothing",
+                    "section": {
+                        "de": "Burger",
+                        "en": "Burgers"
+                    },
+                    "name": {
+                        "de": "The Big Nothing",
+                        "en": "The Big Nothing"
+                    },
+                    "description": {
+                        "de": "Doppelt Rind, Cheddar, Pickles und Hausmayo. 1100 Kalorien, die du nie isst.",
+                        "en": "Double beef, cheddar, pickles and house mayo. 1100 calories you never eat."
+                    },
+                    "priceCents": 1490,
+                    "dietary": [],
+                    "allergens": [
+                        "EGGS",
+                        "GLUTEN",
+                        "MILK",
+                        "MUSTARD",
+                        "SESAME"
+                    ],
+                    "spiceLevel": 0,
+                    "calories": 1100,
+                    "moods": [
+                        "cheesy",
+                        "comfort",
+                        "hearty"
+                    ],
+                    "position": 0,
+                    "available": true
+                },
+                {
+                    "id": "d2e2da8d-d5c3-466a-b775-19cf2b608a98",
+                    "slug": "crispy-chicken-cloud",
+                    "section": {
+                        "de": "Burger",
+                        "en": "Burgers"
+                    },
+                    "name": {
+                        "de": "Crispy-Chicken-Wolke",
+                        "en": "Crispy Chicken Cloud"
+                    },
+                    "description": {
+                        "de": "Buttermilch-Hähnchen, Krautsalat und Chili-Honig.",
+                        "en": "Buttermilk chicken, coleslaw and chili honey."
+                    },
+                    "priceCents": 1390,
+                    "dietary": [],
+                    "allergens": [
+                        "EGGS",
+                        "GLUTEN",
+                        "MILK"
+                    ],
+                    "spiceLevel": 1,
+                    "calories": 940,
+                    "moods": [
+                        "crispy",
+                        "hearty"
+                    ],
+                    "position": 1,
+                    "available": true
+                },
+                {
+                    "id": "7365ea69-fb8c-4ce4-b41f-01982c06d5d3",
+                    "slug": "beyond-air-burger",
+                    "section": {
+                        "de": "Burger",
+                        "en": "Burgers"
+                    },
+                    "name": {
+                        "de": "Beyond Air Burger",
+                        "en": "Beyond Air Burger"
+                    },
+                    "description": {
+                        "de": "Pflanzliches Patty, veganer Cheddar, Röstzwiebeln. Nachhaltiger als nichts geht nicht.",
+                        "en": "Plant-based patty, vegan cheddar, crispy onions. Nothing is more sustainable than nothing."
+                    },
+                    "priceCents": 1390,
+                    "dietary": [
+                        "VEGAN"
+                    ],
+                    "allergens": [
+                        "GLUTEN",
+                        "MUSTARD",
+                        "SOYBEANS"
+                    ],
+                    "spiceLevel": 0,
+                    "calories": 820,
+                    "moods": [
+                        "comfort",
+                        "hearty"
+                    ],
+                    "position": 2,
+                    "available": true
+                },
+                {
+                    "id": "4b464859-f638-42f7-9cff-f9bca1ba7f65",
+                    "slug": "truffle-fries-of-tomorrow",
+                    "section": {
+                        "de": "Beilagen",
+                        "en": "Sides"
+                    },
+                    "name": {
+                        "de": "Trüffelpommes von morgen",
+                        "en": "Truffle Fries of Tomorrow"
+                    },
+                    "description": {
+                        "de": "Knusprige Pommes mit Trüffelöl und Parmesan.",
+                        "en": "Crispy fries with truffle oil and parmesan."
+                    },
+                    "priceCents": 590,
+                    "dietary": [
+                        "GLUTEN_FREE",
+                        "VEGETARIAN"
+                    ],
+                    "allergens": [
+                        "MILK"
+                    ],
+                    "spiceLevel": 0,
+                    "calories": 520,
+                    "moods": [
+                        "crispy",
+                        "salty"
+                    ],
+                    "position": 3,
+                    "available": true
+                },
+                {
+                    "id": "55e0fd41-1c06-47b9-82d9-ee3c8a9a0f4d",
+                    "slug": "onion-rings-without-regret",
+                    "section": {
+                        "de": "Beilagen",
+                        "en": "Sides"
+                    },
+                    "name": {
+                        "de": "Zwiebelringe ohne Reue",
+                        "en": "Onion Rings Without Regret"
+                    },
+                    "description": {
+                        "de": "Im Bierteig, mit BBQ-Dip. Die Reue bleibt aus.",
+                        "en": "Beer-battered, with BBQ dip. No regret included."
+                    },
+                    "priceCents": 490,
+                    "dietary": [
+                        "VEGAN"
+                    ],
+                    "allergens": [
+                        "GLUTEN"
+                    ],
+                    "spiceLevel": 0,
+                    "calories": 430,
+                    "moods": [
+                        "crispy",
+                        "salty",
+                        "sharable"
+                    ],
+                    "position": 4,
+                    "available": true
+                },
+                {
+                    "id": "693124a6-bfb5-40f2-b1ea-8d4bb0f823cc",
+                    "slug": "vanilla-shake-vapor",
+                    "section": {
+                        "de": "Getränke",
+                        "en": "Drinks"
+                    },
+                    "name": {
+                        "de": "Vanille-Shake-Dampf",
+                        "en": "Vanilla Shake Vapor"
+                    },
+                    "description": {
+                        "de": "Dicker Shake mit Bourbon-Vanille. Garantiert kein Hirnfrost.",
+                        "en": "Thick shake with bourbon vanilla. No brain freeze, guaranteed."
+                    },
+                    "priceCents": 550,
+                    "dietary": [
+                        "GLUTEN_FREE",
+                        "VEGETARIAN"
+                    ],
+                    "allergens": [
+                        "MILK"
+                    ],
+                    "spiceLevel": 0,
+                    "calories": 610,
+                    "moods": [
+                        "creamy",
+                        "sweet"
+                    ],
+                    "position": 5,
+                    "available": true
+                }
+            ]
+        },
+        {
+            "id": "f4a3aff7-4717-4550-ad57-f105c052d24c",
+            "slug": "ghost-gyros",
+            "name": "Ghost Gyros",
+            "description": {
+                "de": "Griechische Klassiker vom Spieß, serviert von den Geistern Altonas. Bis 1 Uhr nachts unsichtbar.",
+                "en": "Greek classics from the spit, served by the ghosts of Altona. Invisible until 1 a.m."
+            },
+            "cuisine": "greek",
+            "rating": 4.5,
+            "deliveryMinutes": 35,
+            "deliveryFeeCents": 149,
+            "minimumOrderCents": 1200,
+            "latitude": 53.5511,
+            "longitude": 9.9354,
+            "opensAt": "11:30",
+            "closesAt": "01:00",
+            "dishes": [
+                {
+                    "id": "efd17f1a-e9f8-4363-970d-0f7c6739b309",
+                    "slug": "gyros-plate-of-air",
+                    "section": {
+                        "de": "Hauptgerichte",
+                        "en": "Mains"
+                    },
+                    "name": {
+                        "de": "Gyros-Teller aus Luft",
+                        "en": "Gyros Plate of Air"
+                    },
+                    "description": {
+                        "de": "Mariniertes Schweinefleisch vom Spieß mit Tzatziki und Pommes, die nie fettig werden.",
+                        "en": "Marinated pork from the spit with tzatziki and fries that never get greasy."
+                    },
+                    "priceCents": 1450,
+                    "dietary": [],
+                    "allergens": [
+                        "MILK"
+                    ],
+                    "spiceLevel": 0,
+                    "calories": 1180,
+                    "moods": [
+                        "comfort",
+                        "hearty",
+                        "salty"
+                    ],
+                    "position": 0,
+                    "available": true
+                },
+                {
+                    "id": "297a62a3-6ea5-4faa-ae01-334a14bb5a5a",
+                    "slug": "chicken-souvlaki-specter",
+                    "section": {
+                        "de": "Hauptgerichte",
+                        "en": "Mains"
+                    },
+                    "name": {
+                        "de": "Hähnchen-Souvlaki-Gespenst",
+                        "en": "Chicken Souvlaki Specter"
+                    },
+                    "description": {
+                        "de": "Zwei Spieße mit Zitrone, Oregano und einem Hauch Jenseits.",
+                        "en": "Two skewers with lemon, oregano and a hint of the afterlife."
+                    },
+                    "priceCents": 1390,
+                    "dietary": [
+                        "GLUTEN_FREE"
+                    ],
+                    "allergens": [
+                        "MILK"
+                    ],
+                    "spiceLevel": 0,
+                    "calories": 870,
+                    "moods": [
+                        "fresh",
+                        "hearty"
+                    ],
+                    "position": 1,
+                    "available": true
+                },
+                {
+                    "id": "226f7640-abc1-4d7c-8a21-26c6bad80231",
+                    "slug": "halloumi-haunt",
+                    "section": {
+                        "de": "Hauptgerichte",
+                        "en": "Mains"
+                    },
+                    "name": {
+                        "de": "Halloumi-Spuk",
+                        "en": "Halloumi Haunt"
+                    },
+                    "description": {
+                        "de": "Gegrillter Halloumi auf Salat. Er quietscht nur in deiner Fantasie.",
+                        "en": "Grilled halloumi on salad. It only squeaks in your imagination."
+                    },
+                    "priceCents": 1190,
+                    "dietary": [
+                        "GLUTEN_FREE",
+                        "VEGETARIAN"
+                    ],
+                    "allergens": [
+                        "MILK"
+                    ],
+                    "spiceLevel": 0,
+                    "calories": 640,
+                    "moods": [
+                        "fresh",
+                        "salty"
+                    ],
+                    "position": 2,
+                    "available": true
+                },
+                {
+                    "id": "d4a9db62-9166-4b7d-84f9-2bd5a5694454",
+                    "slug": "falafel-phantom-wrap",
+                    "section": {
+                        "de": "Wraps",
+                        "en": "Wraps"
+                    },
+                    "name": {
+                        "de": "Falafel-Phantom-Wrap",
+                        "en": "Falafel Phantom Wrap"
+                    },
+                    "description": {
+                        "de": "Knusprige Falafel, Hummus und eingelegte Zwiebeln im Fladenbrot.",
+                        "en": "Crispy falafel, hummus and pickled onions in flatbread."
+                    },
+                    "priceCents": 990,
+                    "dietary": [
+                        "VEGAN"
+                    ],
+                    "allergens": [
+                        "GLUTEN",
+                        "SESAME"
+                    ],
+                    "spiceLevel": 1,
+                    "calories": 720,
+                    "moods": [
+                        "crispy",
+                        "fresh"
+                    ],
+                    "position": 3,
+                    "available": true
+                },
+                {
+                    "id": "cd301089-f99d-4985-953c-6a2a1ba2d1db",
+                    "slug": "tzatziki-in-theory",
+                    "section": {
+                        "de": "Beilagen",
+                        "en": "Sides"
+                    },
+                    "name": {
+                        "de": "Tzatziki in der Theorie",
+                        "en": "Tzatziki in Theory"
+                    },
+                    "description": {
+                        "de": "Joghurt, Gurke, Knoblauch. Ein Dip ganz ohne Chip.",
+                        "en": "Yogurt, cucumber, garlic. A dip without a chip."
+                    },
+                    "priceCents": 450,
+                    "dietary": [
+                        "GLUTEN_FREE",
+                        "VEGETARIAN"
+                    ],
+                    "allergens": [
+                        "MILK"
+                    ],
+                    "spiceLevel": 0,
+                    "calories": 180,
+                    "moods": [
+                        "creamy",
+                        "fresh"
+                    ],
+                    "position": 4,
+                    "available": true
+                },
+                {
+                    "id": "8efecb0e-193b-40b7-8b10-76aa8eb5db7e",
+                    "slug": "baklava-blackout",
+                    "section": {
+                        "de": "Desserts",
+                        "en": "Desserts"
+                    },
+                    "name": {
+                        "de": "Baklava-Blackout",
+                        "en": "Baklava Blackout"
+                    },
+                    "description": {
+                        "de": "Filoteig, Walnüsse, Honigsirup. Süß bis zur Ohnmacht.",
+                        "en": "Filo pastry, walnuts, honey syrup. Sweet enough to black out."
+                    },
+                    "priceCents": 590,
+                    "dietary": [
+                        "VEGETARIAN"
+                    ],
+                    "allergens": [
+                        "GLUTEN",
+                        "MILK",
+                        "NUTS"
+                    ],
+                    "spiceLevel": 0,
+                    "calories": 520,
+                    "moods": [
+                        "crispy",
+                        "sweet"
+                    ],
+                    "position": 5,
+                    "available": true
+                }
+            ]
+        },
+        {
+            "id": "b820a873-a31d-4c23-9f72-ff78401f1b85",
+            "slug": "imaginary-ice-cream",
+            "name": "Imaginary Ice Cream",
+            "description": {
+                "de": "Handgemachtes Eis aus Eppendorf, das niemals schmilzt, weil es nie ankommt.",
+                "en": "Handmade ice cream from Eppendorf that never melts, because it never arrives."
+            },
+            "cuisine": "desserts",
+            "rating": 4.9,
+            "deliveryMinutes": 20,
+            "deliveryFeeCents": 149,
+            "minimumOrderCents": 1000,
+            "latitude": 53.5893,
+            "longitude": 9.9843,
+            "opensAt": "13:00",
+            "closesAt": "21:00",
+            "dishes": [
+                {
+                    "id": "34b0ac16-89af-40ae-8947-3ba181c72458",
+                    "slug": "pistachio-dream",
+                    "section": {
+                        "de": "Eis",
+                        "en": "Ice cream"
+                    },
+                    "name": {
+                        "de": "Pistazien-Traum",
+                        "en": "Pistachio Dream"
+                    },
+                    "description": {
+                        "de": "Sizilianische Pistazie, zwei Kugeln, schmilzt nie.",
+                        "en": "Sicilian pistachio, two scoops, never melts."
+                    },
+                    "priceCents": 590,
+                    "dietary": [
+                        "GLUTEN_FREE",
+                        "VEGETARIAN"
+                    ],
+                    "allergens": [
+                        "MILK",
+                        "NUTS"
+                    ],
+                    "spiceLevel": 0,
+                    "calories": 360,
+                    "moods": [
+                        "creamy",
+                        "sweet"
+                    ],
+                    "position": 0,
+                    "available": true
+                },
+                {
+                    "id": "aa82d44c-a044-4e39-beab-8d3e1f03ea17",
+                    "slug": "salted-caramel-specter",
+                    "section": {
+                        "de": "Eis",
+                        "en": "Ice cream"
+                    },
+                    "name": {
+                        "de": "Salted-Caramel-Gespenst",
+                        "en": "Salted Caramel Specter"
+                    },
+                    "description": {
+                        "de": "Karamell mit Fleur de Sel, süß und salzig zugleich.",
+                        "en": "Caramel with fleur de sel, sweet and salty at once."
+                    },
+                    "priceCents": 590,
+                    "dietary": [
+                        "GLUTEN_FREE",
+                        "VEGETARIAN"
+                    ],
+                    "allergens": [
+                        "MILK"
+                    ],
+                    "spiceLevel": 0,
+                    "calories": 390,
+                    "moods": [
+                        "creamy",
+                        "salty",
+                        "sweet"
+                    ],
+                    "position": 1,
+                    "available": true
+                },
+                {
+                    "id": "09e841d0-212b-4a17-b247-b0a9e2d7529a",
+                    "slug": "dark-chocolate-void",
+                    "section": {
+                        "de": "Eis",
+                        "en": "Ice cream"
+                    },
+                    "name": {
+                        "de": "Zartbitter-Leere",
+                        "en": "Dark Chocolate Void"
+                    },
+                    "description": {
+                        "de": "70 Prozent Kakao, so dunkel wie dein Kühlschrank um 3 Uhr nachts.",
+                        "en": "70 percent cocoa, as dark as your fridge at 3 a.m."
+                    },
+                    "priceCents": 590,
+                    "dietary": [
+                        "GLUTEN_FREE",
+                        "VEGAN"
+                    ],
+                    "allergens": [
+                        "SOYBEANS"
+                    ],
+                    "spiceLevel": 0,
+                    "calories": 340,
+                    "moods": [
+                        "comfort",
+                        "sweet"
+                    ],
+                    "position": 2,
+                    "available": true
+                },
+                {
+                    "id": "027e1d93-21c2-43fd-9d88-3321ef8bec5f",
+                    "slug": "mango-sorbet-mirage",
+                    "section": {
+                        "de": "Eis",
+                        "en": "Ice cream"
+                    },
+                    "name": {
+                        "de": "Mango-Sorbet-Fata-Morgana",
+                        "en": "Mango Sorbet Mirage"
+                    },
+                    "description": {
+                        "de": "Fruchtig, kalt, laktosefrei und nicht existent.",
+                        "en": "Fruity, cold, lactose-free and non-existent."
+                    },
+                    "priceCents": 550,
+                    "dietary": [
+                        "GLUTEN_FREE",
+                        "LACTOSE_FREE",
+                        "VEGAN"
+                    ],
+                    "allergens": [],
+                    "spiceLevel": 0,
+                    "calories": 210,
+                    "moods": [
+                        "fresh",
+                        "light",
+                        "sweet"
+                    ],
+                    "position": 3,
+                    "available": true
+                },
+                {
+                    "id": "2c349041-eae2-4f29-aa44-d6b1742c7049",
+                    "slug": "cookie-dough-cloud",
+                    "section": {
+                        "de": "Becher",
+                        "en": "Sundaes"
+                    },
+                    "name": {
+                        "de": "Cookie-Dough-Wolke",
+                        "en": "Cookie Dough Cloud"
+                    },
+                    "description": {
+                        "de": "Vanilleeis, Keksteigstücke, Schokosauce und Sahne.",
+                        "en": "Vanilla ice cream, cookie dough chunks, chocolate sauce and whipped cream."
+                    },
+                    "priceCents": 790,
+                    "dietary": [
+                        "VEGETARIAN"
+                    ],
+                    "allergens": [
+                        "EGGS",
+                        "GLUTEN",
+                        "MILK",
+                        "SOYBEANS"
+                    ],
+                    "spiceLevel": 0,
+                    "calories": 720,
+                    "moods": [
+                        "comfort",
+                        "creamy",
+                        "sweet"
+                    ],
+                    "position": 4,
+                    "available": true
+                },
+                {
+                    "id": "ae032b80-1650-410c-a74c-fa1d1b2b6da6",
+                    "slug": "banana-split-of-nothing",
+                    "section": {
+                        "de": "Becher",
+                        "en": "Sundaes"
+                    },
+                    "name": {
+                        "de": "Bananensplit aus Nichts",
+                        "en": "Banana Split of Nothing"
+                    },
+                    "description": {
+                        "de": "Drei Kugeln, Banane, Erdnüsse, Karamell. Teilen nicht nötig.",
+                        "en": "Three scoops, banana, peanuts, caramel. No need to share."
+                    },
+                    "priceCents": 890,
+                    "dietary": [
+                        "GLUTEN_FREE",
+                        "VEGETARIAN"
+                    ],
+                    "allergens": [
+                        "MILK",
+                        "PEANUTS"
+                    ],
+                    "spiceLevel": 0,
+                    "calories": 680,
+                    "moods": [
+                        "sharable",
+                        "sweet"
+                    ],
+                    "position": 5,
+                    "available": true
+                }
+            ]
+        },
+        {
+            "id": "edc3552a-0f5d-4063-b948-2b59981fe138",
+            "slug": "mirage-sushi",
+            "name": "Mirage Sushi",
+            "description": {
+                "de": "Sushi am Hafen, so frisch wie eine Idee. Für diese Bestellung wurde kein Fisch gefangen.",
+                "en": "Sushi by the harbour, as fresh as an idea. No fish was caught for this order."
+            },
+            "cuisine": "japanese",
+            "rating": 4.8,
+            "deliveryMinutes": 35,
+            "deliveryFeeCents": 299,
+            "minimumOrderCents": 1500,
+            "latitude": 53.5413,
+            "longitude": 9.9849,
+            "opensAt": "12:00",
+            "closesAt": "22:00",
+            "dishes": [
+                {
+                    "id": "951cbbbe-ca6f-47cd-b0fa-263226c50288",
+                    "slug": "salmon-nigiri-illusion",
+                    "section": {
+                        "de": "Nigiri",
+                        "en": "Nigiri"
+                    },
+                    "name": {
+                        "de": "Lachs-Nigiri-Illusion",
+                        "en": "Salmon Nigiri Illusion"
+                    },
+                    "description": {
+                        "de": "Sechs Stück norwegischer Lachs auf Sushireis. Nimmt dem Meer nichts weg.",
+                        "en": "Six pieces of Norwegian salmon on sushi rice. Takes nothing from the sea."
+                    },
+                    "priceCents": 1490,
+                    "dietary": [
+                        "GLUTEN_FREE",
+                        "LACTOSE_FREE"
+                    ],
+                    "allergens": [
+                        "FISH"
+                    ],
+                    "spiceLevel": 0,
+                    "calories": 420,
+                    "moods": [
+                        "fresh",
+                        "light",
+                        "umami"
+                    ],
+                    "position": 0,
+                    "available": true
+                },
+                {
+                    "id": "dd650cee-19d1-46e0-a6bc-7cc1de41edd9",
+                    "slug": "dragon-roll-delusion",
+                    "section": {
+                        "de": "Rolls",
+                        "en": "Rolls"
+                    },
+                    "name": {
+                        "de": "Dragon-Roll-Wahn",
+                        "en": "Dragon Roll Delusion"
+                    },
+                    "description": {
+                        "de": "Garnelen-Tempura, Avocado, Aalsauce. Acht Stück reine Einbildung.",
+                        "en": "Shrimp tempura, avocado, eel sauce. Eight pieces of pure delusion."
+                    },
+                    "priceCents": 1690,
+                    "dietary": [],
+                    "allergens": [
+                        "CRUSTACEANS",
+                        "EGGS",
+                        "GLUTEN",
+                        "SESAME",
+                        "SOYBEANS"
+                    ],
+                    "spiceLevel": 0,
+                    "calories": 610,
+                    "moods": [
+                        "crispy",
+                        "umami"
+                    ],
+                    "position": 1,
+                    "available": true
+                },
+                {
+                    "id": "5820376b-d692-47a7-b66a-839159315445",
+                    "slug": "avocado-maki-of-air",
+                    "section": {
+                        "de": "Rolls",
+                        "en": "Rolls"
+                    },
+                    "name": {
+                        "de": "Avocado-Maki aus Luft",
+                        "en": "Avocado Maki of Air"
+                    },
+                    "description": {
+                        "de": "Acht Stück mit Avocado und Sesam. Leichter geht es nicht.",
+                        "en": "Eight pieces with avocado and sesame. Lighter is impossible."
+                    },
+                    "priceCents": 790,
+                    "dietary": [
+                        "GLUTEN_FREE",
+                        "VEGAN"
+                    ],
+                    "allergens": [
+                        "SESAME"
+                    ],
+                    "spiceLevel": 0,
+                    "calories": 280,
+                    "moods": [
+                        "fresh",
+                        "light"
+                    ],
+                    "position": 2,
+                    "available": true
+                },
+                {
+                    "id": "e8c4e25a-f92a-4c23-bd25-e69ee6d12c11",
+                    "slug": "spicy-tuna-specter",
+                    "section": {
+                        "de": "Rolls",
+                        "en": "Rolls"
+                    },
+                    "name": {
+                        "de": "Spicy-Tuna-Gespenst",
+                        "en": "Spicy Tuna Specter"
+                    },
+                    "description": {
+                        "de": "Thunfisch, Sriracha-Mayo, Frühlingszwiebel. Scharf im Geiste.",
+                        "en": "Tuna, sriracha mayo, spring onion. Spicy in spirit."
+                    },
+                    "priceCents": 1390,
+                    "dietary": [],
+                    "allergens": [
+                        "EGGS",
+                        "FISH",
+                        "SOYBEANS"
+                    ],
+                    "spiceLevel": 2,
+                    "calories": 450,
+                    "moods": [
+                        "spicy",
+                        "umami"
+                    ],
+                    "position": 3,
+                    "available": true
+                },
+                {
+                    "id": "e95639f3-2056-44ef-a2c5-73c6b5fd902d",
+                    "slug": "miso-soup-of-silence",
+                    "section": {
+                        "de": "Beilagen",
+                        "en": "Sides"
+                    },
+                    "name": {
+                        "de": "Misosuppe der Stille",
+                        "en": "Miso Soup of Silence"
+                    },
+                    "description": {
+                        "de": "Dashi, Tofu, Wakame. Wärmt das Herz, nicht den Bauch.",
+                        "en": "Dashi, tofu, wakame. Warms the heart, not the belly."
+                    },
+                    "priceCents": 390,
+                    "dietary": [
+                        "LACTOSE_FREE"
+                    ],
+                    "allergens": [
+                        "FISH",
+                        "SOYBEANS"
+                    ],
+                    "spiceLevel": 0,
+                    "calories": 90,
+                    "moods": [
+                        "comfort",
+                        "light",
+                        "umami"
+                    ],
+                    "position": 4,
+                    "available": true
+                },
+                {
+                    "id": "159bfc9c-2a33-431f-9a96-b07c793379e2",
+                    "slug": "mochi-mirage",
+                    "section": {
+                        "de": "Desserts",
+                        "en": "Desserts"
+                    },
+                    "name": {
+                        "de": "Mochi-Fata-Morgana",
+                        "en": "Mochi Mirage"
+                    },
+                    "description": {
+                        "de": "Drei Mochi: Matcha, Erdbeere, Mango. Weich wie eine Ausrede.",
+                        "en": "Three mochi: matcha, strawberry, mango. Soft as an excuse."
+                    },
+                    "priceCents": 690,
+                    "dietary": [
+                        "GLUTEN_FREE",
+                        "VEGETARIAN"
+                    ],
+                    "allergens": [
+                        "MILK"
+                    ],
+                    "spiceLevel": 0,
+                    "calories": 290,
+                    "moods": [
+                        "sweet"
+                    ],
+                    "position": 5,
+                    "available": true
+                }
+            ]
+        },
+        {
+            "id": "1a525041-f345-43e8-ab58-ff558487fc18",
+            "slug": "nothing-noodles",
+            "name": "Nothing Noodles",
+            "description": {
+                "de": "Nudelsuppen und Wok-Nudeln aus der Schanze. Schlürfen erlaubt, Kleckern unmöglich.",
+                "en": "Noodle soups and wok noodles from the Schanze. Slurping allowed, spilling impossible."
+            },
+            "cuisine": "asian",
+            "rating": 4.4,
+            "deliveryMinutes": 25,
+            "deliveryFeeCents": 99,
+            "minimumOrderCents": 1000,
+            "latitude": 53.5636,
+            "longitude": 9.9649,
+            "opensAt": "11:00",
+            "closesAt": "22:00",
+            "dishes": [
+                {
+                    "id": "5cb6b07b-ec5e-44f7-ba9f-be2906393570",
+                    "slug": "pho-bo-of-nothing",
+                    "section": {
+                        "de": "Suppen",
+                        "en": "Soups"
+                    },
+                    "name": {
+                        "de": "Phở Bò aus Nichts",
+                        "en": "Phở Bò of Nothing"
+                    },
+                    "description": {
+                        "de": "Zwölf Stunden Rinderbrühe, Reisnudeln, Thai-Basilikum. Am Ende null Kalorien.",
+                        "en": "Twelve-hour beef broth, rice noodles, Thai basil. Zero calories in the end."
+                    },
+                    "priceCents": 1390,
+                    "dietary": [
+                        "GLUTEN_FREE",
+                        "LACTOSE_FREE"
+                    ],
+                    "allergens": [
+                        "FISH"
+                    ],
+                    "spiceLevel": 1,
+                    "calories": 540,
+                    "moods": [
+                        "comfort",
+                        "fresh",
+                        "umami"
+                    ],
+                    "position": 0,
+                    "available": true
+                },
+                {
+                    "id": "be401a37-ab03-4ae6-aa29-cbd7f141cd41",
+                    "slug": "tofu-pho-phantom",
+                    "section": {
+                        "de": "Suppen",
+                        "en": "Soups"
+                    },
+                    "name": {
+                        "de": "Tofu-Phở-Phantom",
+                        "en": "Tofu Phở Phantom"
+                    },
+                    "description": {
+                        "de": "Klare Gemüsebrühe, knuspriger Tofu, Limette und Koriander.",
+                        "en": "Clear vegetable broth, crispy tofu, lime and coriander."
+                    },
+                    "priceCents": 1290,
+                    "dietary": [
+                        "LACTOSE_FREE",
+                        "VEGAN"
+                    ],
+                    "allergens": [
+                        "SOYBEANS"
+                    ],
+                    "spiceLevel": 1,
+                    "calories": 470,
+                    "moods": [
+                        "comfort",
+                        "fresh"
+                    ],
+                    "position": 1,
+                    "available": true
+                },
+                {
+                    "id": "f5de25cf-9afe-478f-8e55-cae44c59ebcc",
+                    "slug": "bun-cha-breeze",
+                    "section": {
+                        "de": "Nudeln",
+                        "en": "Noodles"
+                    },
+                    "name": {
+                        "de": "Bún-Chả-Brise",
+                        "en": "Bún Chả Breeze"
+                    },
+                    "description": {
+                        "de": "Gegrilltes Schweinefleisch, kalte Reisnudeln, Kräuter und Dip.",
+                        "en": "Grilled pork, cold rice noodles, herbs and dipping sauce."
+                    },
+                    "priceCents": 1350,
+                    "dietary": [
+                        "LACTOSE_FREE"
+                    ],
+                    "allergens": [
+                        "FISH",
+                        "PEANUTS"
+                    ],
+                    "spiceLevel": 1,
+                    "calories": 690,
+                    "moods": [
+                        "fresh",
+                        "umami"
+                    ],
+                    "position": 2,
+                    "available": true
+                },
+                {
+                    "id": "46c461c1-e428-46da-8fdd-9a2a4c4ece5d",
+                    "slug": "dan-dan-daydream",
+                    "section": {
+                        "de": "Nudeln",
+                        "en": "Noodles"
+                    },
+                    "name": {
+                        "de": "Dan-Dan-Tagtraum",
+                        "en": "Dan Dan Daydream"
+                    },
+                    "description": {
+                        "de": "Weizennudeln, Sesam-Chili-Sauce, Hackfleisch und Erdnüsse.",
+                        "en": "Wheat noodles, sesame chili sauce, minced pork and peanuts."
+                    },
+                    "priceCents": 1290,
+                    "dietary": [],
+                    "allergens": [
+                        "GLUTEN",
+                        "PEANUTS",
+                        "SESAME",
+                        "SOYBEANS"
+                    ],
+                    "spiceLevel": 3,
+                    "calories": 880,
+                    "moods": [
+                        "hearty",
+                        "spicy",
+                        "umami"
+                    ],
+                    "position": 3,
+                    "available": true
+                },
+                {
+                    "id": "5a5fa677-0287-4c9a-92f0-90e03c909d95",
+                    "slug": "spring-roll-spirits",
+                    "section": {
+                        "de": "Vorspeisen",
+                        "en": "Starters"
+                    },
+                    "name": {
+                        "de": "Frühlingsrollen-Geister",
+                        "en": "Spring Roll Spirits"
+                    },
+                    "description": {
+                        "de": "Vier knusprige Stück mit Glasnudeln und Gemüse, dazu Süß-Sauer-Dip.",
+                        "en": "Four crispy pieces with glass noodles and vegetables, with sweet and sour dip."
+                    },
+                    "priceCents": 650,
+                    "dietary": [
+                        "VEGAN"
+                    ],
+                    "allergens": [
+                        "GLUTEN",
+                        "SOYBEANS"
+                    ],
+                    "spiceLevel": 0,
+                    "calories": 380,
+                    "moods": [
+                        "crispy",
+                        "sharable"
+                    ],
+                    "position": 4,
+                    "available": true
+                },
+                {
+                    "id": "02f6f16e-3bfc-46b5-bdc6-ceee150157c5",
+                    "slug": "edamame-echo",
+                    "section": {
+                        "de": "Vorspeisen",
+                        "en": "Starters"
+                    },
+                    "name": {
+                        "de": "Edamame-Echo",
+                        "en": "Edamame Echo"
+                    },
+                    "description": {
+                        "de": "Gedämpft, mit Meersalz. Du hörst sie nur aufploppen.",
+                        "en": "Steamed, with sea salt. You only hear them pop."
+                    },
+                    "priceCents": 490,
+                    "dietary": [
+                        "GLUTEN_FREE",
+                        "VEGAN"
+                    ],
+                    "allergens": [
+                        "SOYBEANS"
+                    ],
+                    "spiceLevel": 0,
+                    "calories": 190,
+                    "moods": [
+                        "light",
+                        "salty"
+                    ],
+                    "position": 5,
+                    "available": true
+                }
+            ]
+        },
+        {
+            "id": "80bd3bc8-b35a-42c4-9a97-687623eceab0",
+            "slug": "phantom-pizza",
+            "name": "Phantom Pizza",
+            "description": {
+                "de": "Neapolitanische Pizza aus einem Steinofen, der nie angeheizt wird. Seit 2026 null Krümel auf dem Sofa.",
+                "en": "Neapolitan pizza from a stone oven that is never lit. Zero crumbs on the couch since 2026."
+            },
+            "cuisine": "italian",
+            "rating": 4.7,
+            "deliveryMinutes": 30,
+            "deliveryFeeCents": 199,
+            "minimumOrderCents": 1200,
+            "latitude": 53.5503,
+            "longitude": 9.9667,
+            "opensAt": "11:00",
+            "closesAt": "23:00",
+            "dishes": [
+                {
+                    "id": "eb2040ac-3a19-4051-a2bd-5d81481e9164",
+                    "slug": "margherita-of-nothing",
+                    "section": {
+                        "de": "Pizza",
+                        "en": "Pizza"
+                    },
+                    "name": {
+                        "de": "Margherita des Nichts",
+                        "en": "Margherita of Nothing"
+                    },
+                    "description": {
+                        "de": "San-Marzano-Tomaten, Fior di Latte und Basilikum, die du dir selbst vorstellst.",
+                        "en": "San Marzano tomatoes, fior di latte and basil, imagined by you."
+                    },
+                    "priceCents": 1090,
+                    "dietary": [
+                        "VEGETARIAN"
+                    ],
+                    "allergens": [
+                        "GLUTEN",
+                        "MILK"
+                    ],
+                    "spiceLevel": 0,
+                    "calories": 820,
+                    "moods": [
+                        "cheesy",
+                        "classic",
+                        "comfort"
+                    ],
+                    "position": 0,
+                    "available": true
+                },
+                {
+                    "id": "2f204ebb-ab5c-4c01-9eb2-ad1b22178608",
+                    "slug": "diavola-invisibile",
+                    "section": {
+                        "de": "Pizza",
+                        "en": "Pizza"
+                    },
+                    "name": {
+                        "de": "Diavola Invisibile",
+                        "en": "Diavola Invisibile"
+                    },
+                    "description": {
+                        "de": "Scharfe Salami und Chili. Unsichtbar, aber du spürst die Hitze.",
+                        "en": "Spicy salami and chili. Invisible, but you feel the heat."
+                    },
+                    "priceCents": 1290,
+                    "dietary": [],
+                    "allergens": [
+                        "GLUTEN",
+                        "MILK"
+                    ],
+                    "spiceLevel": 2,
+                    "calories": 960,
+                    "moods": [
+                        "cheesy",
+                        "hearty",
+                        "spicy"
+                    ],
+                    "position": 1,
+                    "available": true
+                },
+                {
+                    "id": "6bcde70a-487b-4514-9e8a-a496dc942754",
+                    "slug": "vegan-vapor-pizza",
+                    "section": {
+                        "de": "Pizza",
+                        "en": "Pizza"
+                    },
+                    "name": {
+                        "de": "Vegane Dampf-Pizza",
+                        "en": "Vegan Vapor Pizza"
+                    },
+                    "description": {
+                        "de": "Gegrilltes Gemüse und Cashew-Mozzarella auf einem Teig aus reiner Absicht.",
+                        "en": "Grilled vegetables and cashew mozzarella on a crust of pure intention."
+                    },
+                    "priceCents": 1190,
+                    "dietary": [
+                        "VEGAN"
+                    ],
+                    "allergens": [
+                        "GLUTEN",
+                        "NUTS"
+                    ],
+                    "spiceLevel": 0,
+                    "calories": 740,
+                    "moods": [
+                        "comfort",
+                        "fresh"
+                    ],
+                    "position": 2,
+                    "available": true
+                },
+                {
+                    "id": "e5a2160b-4441-491e-92b4-109a11192e9e",
+                    "slug": "garlic-ghost-bread",
+                    "section": {
+                        "de": "Vorspeisen",
+                        "en": "Starters"
+                    },
+                    "name": {
+                        "de": "Geister-Knoblauchbrot",
+                        "en": "Garlic Ghost Bread"
+                    },
+                    "description": {
+                        "de": "Knusprig und buttrig, und dein Atem bleibt trotzdem frisch.",
+                        "en": "Crispy and buttery, and your breath stays fresh anyway."
+                    },
+                    "priceCents": 590,
+                    "dietary": [
+                        "VEGETARIAN"
+                    ],
+                    "allergens": [
+                        "GLUTEN",
+                        "MILK"
+                    ],
+                    "spiceLevel": 0,
+                    "calories": 410,
+                    "moods": [
+                        "crispy",
+                        "salty",
+                        "sharable"
+                    ],
+                    "position": 3,
+                    "available": true
+                },
+                {
+                    "id": "92f90248-d002-45c7-8195-65eb4310fe33",
+                    "slug": "burrata-mirage",
+                    "section": {
+                        "de": "Vorspeisen",
+                        "en": "Starters"
+                    },
+                    "name": {
+                        "de": "Burrata-Fata-Morgana",
+                        "en": "Burrata Mirage"
+                    },
+                    "description": {
+                        "de": "Cremige Burrata mit Kirschtomaten, die sich in Luft auflöst.",
+                        "en": "Creamy burrata with cherry tomatoes that melts into thin air."
+                    },
+                    "priceCents": 890,
+                    "dietary": [
+                        "GLUTEN_FREE",
+                        "VEGETARIAN"
+                    ],
+                    "allergens": [
+                        "MILK"
+                    ],
+                    "spiceLevel": 0,
+                    "calories": 380,
+                    "moods": [
+                        "creamy",
+                        "fresh"
+                    ],
+                    "position": 4,
+                    "available": true
+                },
+                {
+                    "id": "1b4f971c-cadf-40c5-b04a-537a5f0f6eee",
+                    "slug": "tiramisu-of-tomorrow",
+                    "section": {
+                        "de": "Desserts",
+                        "en": "Desserts"
+                    },
+                    "name": {
+                        "de": "Tiramisu von morgen",
+                        "en": "Tiramisu of Tomorrow"
+                    },
+                    "description": {
+                        "de": "Espresso, Mascarpone, Kakao. Kommt nie an und schmeckt trotzdem nach mehr.",
+                        "en": "Espresso, mascarpone, cocoa. Never arrives and still tastes like more."
+                    },
+                    "priceCents": 650,
+                    "dietary": [
+                        "VEGETARIAN"
+                    ],
+                    "allergens": [
+                        "EGGS",
+                        "GLUTEN",
+                        "MILK"
+                    ],
+                    "spiceLevel": 0,
+                    "calories": 450,
+                    "moods": [
+                        "creamy",
+                        "sweet"
+                    ],
+                    "position": 5,
+                    "available": true
+                }
+            ]
+        },
+        {
+            "id": "f58d83c4-de06-43ab-aca0-a9c87ef2b1a0",
+            "slug": "placebo-poke",
+            "name": "Placebo Poké",
+            "description": {
+                "de": "Bunte Bowls, die sich gesund anfühlen. Der Effekt ist wissenschaftlich belegt.",
+                "en": "Colourful bowls that feel healthy. The effect is scientifically proven."
+            },
+            "cuisine": "hawaiian",
+            "rating": 4.2,
+            "deliveryMinutes": 25,
+            "deliveryFeeCents": 199,
+            "minimumOrderCents": 1200,
+            "latitude": 53.5833,
+            "longitude": 10.005,
+            "opensAt": "10:30",
+            "closesAt": "20:30",
+            "dishes": [
+                {
+                    "id": "76259683-fede-4cd5-bbdb-bcddff07b6f1",
+                    "slug": "salmon-poke-placebo",
+                    "section": {
+                        "de": "Bowls",
+                        "en": "Bowls"
+                    },
+                    "name": {
+                        "de": "Lachs-Poké-Placebo",
+                        "en": "Salmon Poké Placebo"
+                    },
+                    "description": {
+                        "de": "Lachs, Sushireis, Edamame, Mango und Ponzu. Fühlt sich gesund an.",
+                        "en": "Salmon, sushi rice, edamame, mango and ponzu. Feels healthy."
+                    },
+                    "priceCents": 1390,
+                    "dietary": [
+                        "LACTOSE_FREE"
+                    ],
+                    "allergens": [
+                        "FISH",
+                        "SESAME",
+                        "SOYBEANS"
+                    ],
+                    "spiceLevel": 0,
+                    "calories": 640,
+                    "moods": [
+                        "fresh",
+                        "umami"
+                    ],
+                    "position": 0,
+                    "available": true
+                },
+                {
+                    "id": "f3450327-2ac6-4987-b5de-153a0257169f",
+                    "slug": "tuna-tataki-trick",
+                    "section": {
+                        "de": "Bowls",
+                        "en": "Bowls"
+                    },
+                    "name": {
+                        "de": "Thunfisch-Tataki-Trick",
+                        "en": "Tuna Tataki Trick"
+                    },
+                    "description": {
+                        "de": "Angebratener Thunfisch, Avocado, Gurke und Wasabi-Mayo.",
+                        "en": "Seared tuna, avocado, cucumber and wasabi mayo."
+                    },
+                    "priceCents": 1490,
+                    "dietary": [],
+                    "allergens": [
+                        "EGGS",
+                        "FISH",
+                        "SESAME",
+                        "SOYBEANS"
+                    ],
+                    "spiceLevel": 1,
+                    "calories": 690,
+                    "moods": [
+                        "fresh",
+                        "umami"
+                    ],
+                    "position": 1,
+                    "available": true
+                },
+                {
+                    "id": "4d266731-c5c1-4c90-9fb8-fb94094ece75",
+                    "slug": "tofu-teriyaki-trance",
+                    "section": {
+                        "de": "Bowls",
+                        "en": "Bowls"
+                    },
+                    "name": {
+                        "de": "Tofu-Teriyaki-Trance",
+                        "en": "Tofu Teriyaki Trance"
+                    },
+                    "description": {
+                        "de": "Knuspriger Tofu, Teriyaki, Rotkohl und Erdnüsse.",
+                        "en": "Crispy tofu, teriyaki, red cabbage and peanuts."
+                    },
+                    "priceCents": 1190,
+                    "dietary": [
+                        "LACTOSE_FREE",
+                        "VEGAN"
+                    ],
+                    "allergens": [
+                        "GLUTEN",
+                        "PEANUTS",
+                        "SESAME",
+                        "SOYBEANS"
+                    ],
+                    "spiceLevel": 1,
+                    "calories": 610,
+                    "moods": [
+                        "crispy",
+                        "fresh"
+                    ],
+                    "position": 2,
+                    "available": true
+                },
+                {
+                    "id": "feebe624-3bd4-4c7f-9f49-f7d9608fdbfd",
+                    "slug": "spicy-shrimp-specter",
+                    "section": {
+                        "de": "Bowls",
+                        "en": "Bowls"
+                    },
+                    "name": {
+                        "de": "Scharfes Garnelen-Gespenst",
+                        "en": "Spicy Shrimp Specter"
+                    },
+                    "description": {
+                        "de": "Garnelen, Sriracha, Ananas und Jalapeño.",
+                        "en": "Shrimp, sriracha, pineapple and jalapeño."
+                    },
+                    "priceCents": 1490,
+                    "dietary": [
+                        "GLUTEN_FREE",
+                        "LACTOSE_FREE"
+                    ],
+                    "allergens": [
+                        "CRUSTACEANS",
+                        "SOYBEANS"
+                    ],
+                    "spiceLevel": 2,
+                    "calories": 580,
+                    "moods": [
+                        "fresh",
+                        "spicy"
+                    ],
+                    "position": 3,
+                    "available": true
+                },
+                {
+                    "id": "71e3283d-fbc3-47e8-a071-8934a361bbd4",
+                    "slug": "seaweed-salad-sigh",
+                    "section": {
+                        "de": "Beilagen",
+                        "en": "Sides"
+                    },
+                    "name": {
+                        "de": "Seetang-Salat-Seufzer",
+                        "en": "Seaweed Salad Sigh"
+                    },
+                    "description": {
+                        "de": "Wakame, Sesam, Reisessig. Ein Seufzer vom Meer.",
+                        "en": "Wakame, sesame, rice vinegar. A sigh from the sea."
+                    },
+                    "priceCents": 490,
+                    "dietary": [
+                        "GLUTEN_FREE",
+                        "VEGAN"
+                    ],
+                    "allergens": [
+                        "SESAME",
+                        "SOYBEANS"
+                    ],
+                    "spiceLevel": 0,
+                    "calories": 120,
+                    "moods": [
+                        "fresh",
+                        "light"
+                    ],
+                    "position": 4,
+                    "available": true
+                },
+                {
+                    "id": "6f49e3de-b972-473b-9fa7-209f4d7df57a",
+                    "slug": "coconut-water-of-want",
+                    "section": {
+                        "de": "Getränke",
+                        "en": "Drinks"
+                    },
+                    "name": {
+                        "de": "Kokoswasser der Begierde",
+                        "en": "Coconut Water of Want"
+                    },
+                    "description": {
+                        "de": "Direkt aus der Nuss, eiskalt und nie geliefert.",
+                        "en": "Straight from the nut, ice cold and never delivered."
+                    },
+                    "priceCents": 390,
+                    "dietary": [
+                        "GLUTEN_FREE",
+                        "LACTOSE_FREE",
+                        "VEGAN"
+                    ],
+                    "allergens": [],
+                    "spiceLevel": 0,
+                    "calories": 60,
+                    "moods": [
+                        "fresh",
+                        "light"
+                    ],
+                    "position": 5,
+                    "available": true
+                }
+            ]
+        },
+        {
+            "id": "b07468c3-6472-472d-bc56-1aeab550a099",
+            "slug": "void-vindaloo",
+            "name": "Void Vindaloo",
+            "description": {
+                "de": "Indische Currys mit echter Schärfe und ganz ohne echte Folgen.",
+                "en": "Indian curries with real heat and no real consequences."
+            },
+            "cuisine": "indian",
+            "rating": 4.6,
+            "deliveryMinutes": 40,
+            "deliveryFeeCents": 249,
+            "minimumOrderCents": 1500,
+            "latitude": 53.5733,
+            "longitude": 9.9534,
+            "opensAt": "12:00",
+            "closesAt": "22:30",
+            "dishes": [
+                {
+                    "id": "5ecf94ba-4953-4d51-b432-64eb75f57cf7",
+                    "slug": "lamb-vindaloo-from-the-void",
+                    "section": {
+                        "de": "Currys",
+                        "en": "Curries"
+                    },
+                    "name": {
+                        "de": "Lamm-Vindaloo aus dem Nichts",
+                        "en": "Lamb Vindaloo from the Void"
+                    },
+                    "description": {
+                        "de": "Höllisch scharf, mit Essig und Kartoffeln. Dein Magen bleibt trotzdem ruhig.",
+                        "en": "Fiery hot with vinegar and potatoes. Your stomach stays calm anyway."
+                    },
+                    "priceCents": 1590,
+                    "dietary": [
+                        "GLUTEN_FREE",
+                        "LACTOSE_FREE"
+                    ],
+                    "allergens": [
+                        "MUSTARD"
+                    ],
+                    "spiceLevel": 3,
+                    "calories": 890,
+                    "moods": [
+                        "hearty",
+                        "spicy"
+                    ],
+                    "position": 0,
+                    "available": true
+                },
+                {
+                    "id": "edffcb98-a705-44bf-98ae-c77747cf1f4e",
+                    "slug": "butter-chicken-but-not",
+                    "section": {
+                        "de": "Currys",
+                        "en": "Curries"
+                    },
+                    "name": {
+                        "de": "Butter Chicken, nur nicht",
+                        "en": "Butter Chicken, But Not"
+                    },
+                    "description": {
+                        "de": "Zartes Hähnchen in Tomaten-Butter-Sauce, cremig wie ein Tagtraum.",
+                        "en": "Tender chicken in tomato butter sauce, creamy as a daydream."
+                    },
+                    "priceCents": 1490,
+                    "dietary": [
+                        "GLUTEN_FREE"
+                    ],
+                    "allergens": [
+                        "MILK",
+                        "NUTS"
+                    ],
+                    "spiceLevel": 1,
+                    "calories": 980,
+                    "moods": [
+                        "comfort",
+                        "creamy"
+                    ],
+                    "position": 1,
+                    "available": true
+                },
+                {
+                    "id": "46c21305-0272-4b3f-aea8-2a49f23b4e90",
+                    "slug": "chana-masala-mirage",
+                    "section": {
+                        "de": "Currys",
+                        "en": "Curries"
+                    },
+                    "name": {
+                        "de": "Chana-Masala-Fata-Morgana",
+                        "en": "Chana Masala Mirage"
+                    },
+                    "description": {
+                        "de": "Kichererbsen in würziger Tomatensauce. Wärmt dich ganz ohne Teller.",
+                        "en": "Chickpeas in spiced tomato sauce. Warms you without a plate."
+                    },
+                    "priceCents": 1190,
+                    "dietary": [
+                        "GLUTEN_FREE",
+                        "VEGAN"
+                    ],
+                    "allergens": [],
+                    "spiceLevel": 2,
+                    "calories": 610,
+                    "moods": [
+                        "comfort",
+                        "hearty",
+                        "spicy"
+                    ],
+                    "position": 2,
+                    "available": true
+                },
+                {
+                    "id": "cc7289c6-6503-4fdb-bc4c-209d44243803",
+                    "slug": "palak-paneer-placebo",
+                    "section": {
+                        "de": "Currys",
+                        "en": "Curries"
+                    },
+                    "name": {
+                        "de": "Palak-Paneer-Placebo",
+                        "en": "Palak Paneer Placebo"
+                    },
+                    "description": {
+                        "de": "Spinat und hausgemachter Käse. Wirkt, obwohl nichts drin ist.",
+                        "en": "Spinach and homemade cheese. Works even though there is nothing in it."
+                    },
+                    "priceCents": 1290,
+                    "dietary": [
+                        "GLUTEN_FREE",
+                        "VEGETARIAN"
+                    ],
+                    "allergens": [
+                        "MILK"
+                    ],
+                    "spiceLevel": 1,
+                    "calories": 720,
+                    "moods": [
+                        "comfort",
+                        "creamy"
+                    ],
+                    "position": 3,
+                    "available": true
+                },
+                {
+                    "id": "fbff8c27-db79-47ff-a935-ea3152c2d573",
+                    "slug": "garlic-naan-ghost",
+                    "section": {
+                        "de": "Beilagen",
+                        "en": "Sides"
+                    },
+                    "name": {
+                        "de": "Knoblauch-Naan-Geist",
+                        "en": "Garlic Naan Ghost"
+                    },
+                    "description": {
+                        "de": "Fluffig aus dem Tandoor, mit Knoblauchbutter bestrichen.",
+                        "en": "Fluffy from the tandoor, brushed with garlic butter."
+                    },
+                    "priceCents": 390,
+                    "dietary": [
+                        "VEGETARIAN"
+                    ],
+                    "allergens": [
+                        "GLUTEN",
+                        "MILK"
+                    ],
+                    "spiceLevel": 0,
+                    "calories": 330,
+                    "moods": [
+                        "comfort",
+                        "salty"
+                    ],
+                    "position": 4,
+                    "available": true
+                },
+                {
+                    "id": "895a07d5-040b-4f91-93bc-ee09ad26a86c",
+                    "slug": "mango-lassi-of-longing",
+                    "section": {
+                        "de": "Getränke",
+                        "en": "Drinks"
+                    },
+                    "name": {
+                        "de": "Mango-Lassi der Sehnsucht",
+                        "en": "Mango Lassi of Longing"
+                    },
+                    "description": {
+                        "de": "Mango, Joghurt, Kardamom. Durst gestillt durch reine Vorstellungskraft.",
+                        "en": "Mango, yogurt, cardamom. Thirst quenched by pure imagination."
+                    },
+                    "priceCents": 450,
+                    "dietary": [
+                        "GLUTEN_FREE",
+                        "VEGETARIAN"
+                    ],
+                    "allergens": [
+                        "MILK"
+                    ],
+                    "spiceLevel": 0,
+                    "calories": 260,
+                    "moods": [
+                        "creamy",
+                        "fresh",
+                        "sweet"
+                    ],
+                    "position": 5,
+                    "available": true
+                }
+            ]
+        }
+    ]
+}

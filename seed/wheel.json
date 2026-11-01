@@ -1,0 +1,111 @@
+{
+    "_comment": "Prizes in the order of the wheel's segments (clockwise); terms as loyalty's former Prize enum. Profiles: default = the old default odds, control/generous = the variant payloads of the PostHog flag spin-wheel-odds on 2026-11-01.",
+    "prizes": [
+        {
+            "key": "PERCENT_10",
+            "kind": "PERCENT",
+            "percent": 10,
+            "maxDiscount": null,
+            "minimumOrder": 15,
+            "label": {
+                "de": "10 %",
+                "en": "10%"
+            }
+        },
+        {
+            "key": "FREE_DELIVERY",
+            "kind": "FREE_DELIVERY",
+            "minimumOrder": 0,
+            "label": {
+                "de": "Lieferung",
+                "en": "Delivery"
+            }
+        },
+        {
+            "key": "AMOUNT_5",
+            "kind": "AMOUNT",
+            "amount": 5,
+            "minimumOrder": 20,
+            "label": {
+                "de": "5 €",
+                "en": "€5"
+            }
+        },
+        {
+            "key": "BONUS_XP",
+            "kind": "BONUS_XP",
+            "xp": 100,
+            "label": {
+                "de": "+100 XP",
+                "en": "+100 XP"
+            }
+        },
+        {
+            "key": "PERCENT_20",
+            "kind": "PERCENT",
+            "percent": 20,
+            "maxDiscount": 10,
+            "minimumOrder": 25,
+            "label": {
+                "de": "20 %",
+                "en": "20%"
+            }
+        },
+        {
+            "key": "FREE_DISH",
+            "kind": "FREE_DISH",
+            "maxDiscount": 12,
+            "label": {
+                "de": "Gericht",
+                "en": "Dish"
+            }
+        },
+        {
+            "key": "GOLDEN_FORK",
+            "kind": "BADGE",
+            "badgeKey": "golden-fork",
+            "label": {
+                "de": "Gabel",
+                "en": "Fork"
+            }
+        }
+    ],
+    "profiles": [
+        {
+            "name": "default",
+            "weights": {
+                "PERCENT_10": 25,
+                "PERCENT_20": 10,
+                "AMOUNT_5": 20,
+                "FREE_DELIVERY": 20,
+                "FREE_DISH": 10,
+                "BONUS_XP": 12,
+                "GOLDEN_FORK": 3
+            }
+        },
+        {
+            "name": "control",
+            "weights": {
+                "PERCENT_10": 25,
+                "PERCENT_20": 10,
+                "AMOUNT_5": 20,
+                "FREE_DELIVERY": 20,
+                "FREE_DISH": 10,
+                "BONUS_XP": 12,
+                "GOLDEN_FORK": 3
+            }
+        },
+        {
+            "name": "generous",
+            "weights": {
+                "PERCENT_10": 15,
+                "PERCENT_20": 20,
+                "AMOUNT_5": 20,
+                "FREE_DELIVERY": 15,
+                "FREE_DISH": 20,
+                "BONUS_XP": 5,
+                "GOLDEN_FORK": 5
+            }
+        }
+    ]
+}

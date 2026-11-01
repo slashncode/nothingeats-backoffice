@@ -7,9 +7,18 @@ import { sharpTransformer } from '@payloadcms/transformer-sharp';
 import { buildConfig } from 'payload';
 
 import { admins } from './collections/Admins';
+import { Badges } from './collections/Badges';
+import { Deals } from './collections/Deals';
+import { Dishes } from './collections/Dishes';
 import { Media } from './collections/Media';
+import { Restaurants } from './collections/Restaurants';
 import { loadConfig } from './config';
+import { DealPlanner } from './globals/DealPlanner';
+import { Wheel } from './globals/Wheel';
 import { i18n } from './i18n';
+import { startRelay } from './outbox/relay';
+import { outboxEvents } from './outbox/table';
+import { seedCommand } from './seed/command';
 
 const dirname = path.dirname(fileURLToPath(import.meta.url));
 const config = loadConfig();
@@ -42,7 +51,18 @@ export default buildConfig({
     routes: {
         api: '/api/backoffice',
     },
-    collections: [Admins, Media],
+    collections: [
+        Restaurants,
+        Dishes,
+        Deals,
+        Badges,
+        Media,
+        Admins,
+    ],
+    globals: [DealPlanner, Wheel],
+    cli: {
+        commands: { seed: seedCommand },
+    },
     i18n,
     editor: lexicalEditor(),
     secret: config.payload.secret,
@@ -57,8 +77,29 @@ export default buildConfig({
         },
         // Ids travel in events to other services; catalog's ids are UUIDs already.
         idType: 'uuid',
+        // The seed keeps catalog's ids, so orders and search keep pointing at the same dishes.
+        allowIDOnCreate: true,
+        beforeSchemaInit: [
+            ({ schema }) => ({
+                ...schema,
+                tables: { ...schema.tables, outbox_events: outboxEvents },
+            }),
+        ],
         migrationDir: path.resolve(dirname, 'migrations'),
+        // Migrations everywhere, the dev server included: no interactive schema push.
+        push: false,
     }),
+    onInit: (payload) => {
+        if (!config.outbox.relayEnabled)
+            return;
+        startRelay(payload, {
+            bootstrapServers: config.kafka.bootstrapServers,
+            pollIntervalMs: config.outbox.pollIntervalMs,
+            batchSize: 100,
+            maxBackoffMs: 30_000,
+            retentionMs: config.outbox.retentionDays * 24 * 60 * 60 * 1000,
+        });
+    },
     localization: {
         locales: [
             { code: 'de', label: 'Deutsch' },

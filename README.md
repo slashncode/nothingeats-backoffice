@@ -18,12 +18,20 @@ There are no passwords in the backoffice. Admins sign in with their NothingEats 
 
 Uploads go to Garage (S3 API) with variants made by sharp; the shop's gateway serves the bucket publicly under `/media`.
 
+## Events
+
+Contract: [`docs/events.md`](docs/events.md). The outbox is a table next to Payload's (added through the
+Postgres adapter's schema hook), the relay publishes with `FOR UPDATE SKIP LOCKED` like the Kotlin services.
+
 ## Local development
 
 ```sh
 kubectl --context k3d-nothingeats -n nothingeats port-forward svc/garage 13900:3900
 scripts/dev-env.sh pnpm dev        # http://localhost:3100/admin
 ```
+
+First start on an empty database: `scripts/dev-env.sh pnpm payload migrate`, then `scripts/dev-env.sh pnpm payload seed`
+(restaurants and dishes with catalog's ids, badges, the wheel, the deal planner).
 
 `scripts/dev-env.sh` reads the database and Garage credentials from the gitops repo's SOPS files into the environment; nothing lands on disk. The dev server proxies `/api/identity` and `/media` to the local cluster, so the admin runs on one origin like in the cluster.
 

@@ -14,9 +14,9 @@
         "node": ">=24.22.1"
     },
     "scripts": {
-        "dev": "vite dev",
+        "dev": "OUTBOX__RELAY_ENABLED=true vite dev",
         "build": "PAYLOAD__SECRET=build-time-placeholder-not-used-at-runtime payload build",
-        "start": "srvx --prod --dir=. --static=dist/client --entry=dist/server/server.js",
+        "start": "OUTBOX__RELAY_ENABLED=true srvx --prod --dir=. --static=dist/client --entry=dist/server/server.js",
         "payload": "payload",
         "generate:importmap": "payload generate:importmap",
         "generate:types": "payload generate:types",
@@ -32,6 +32,7 @@
         "@payloadcms/transformer-sharp": "4.0.0-beta.6",
         "@payloadcms/translations": "4.0.0-beta.6",
         "@payloadcms/ui": "4.0.0-beta.6",
+        "@platformatic/kafka": "^2.14.0",
         "@tanstack/react-router": "^1.170.46",
         "@tanstack/react-start": "^1.169.4",
         "jose": "^6.2.14",
