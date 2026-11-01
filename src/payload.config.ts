@@ -55,6 +55,11 @@ export default buildConfig({
             logout: {
                 Button: '/components/LogoutButton#LogoutButton',
             },
+            afterNavLinks: ['/components/accounts/AccountsNavLink#AccountsNavLink'],
+            views: {
+                // The shop's accounts live in identity; this view edits them through its admin API.
+                accounts: { Component: '/components/accounts/AccountsView#AccountsView', path: '/accounts' },
+            },
         },
     },
     // The shop's gateway sends /api/backoffice/* here; /api/* belongs to the services.

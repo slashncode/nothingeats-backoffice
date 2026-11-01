@@ -8,7 +8,7 @@ It is not an admin UI glued onto the services' databases. It is a bounded contex
 |---|---|---|
 | Restaurants, dishes, flash deals, deal planner settings, badges, wheel prizes and odds | yes | outbox → Kafka → catalog / loyalty |
 | Articles, categories, tags, coach suggestions, text overrides | yes | this service's public API ([`docs/api.md`](docs/api.md)) |
-| Accounts | no (identity) | edited through identity's admin API |
+| Accounts | no (identity) | the view `/admin/accounts` (search, lock, unlock, admin role, delete) calls identity's admin API with the admin's own token |
 
 ## Sign-in
 

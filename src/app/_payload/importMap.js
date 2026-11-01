@@ -26,8 +26,10 @@ import { LLMInstructionsDescription as LLMInstructionsDescription_3817bf644402e6
 import { FixedToolbarFeatureClient as FixedToolbarFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from '@payloadcms/richtext-lexical/client'
 import { LLMInstructionsCell as LLMInstructionsCell_ab83ff7e88da8d3530831f296ec4756a } from '@payloadcms/ui/rsc'
 import { LogoutButton as LogoutButton_8f8437271bb1185a7d11b63d7e5de4b9 } from '../../components/LogoutButton'
+import { AccountsNavLink as AccountsNavLink_61e761074fa9661ed217e29fa718b2fd } from '../../components/accounts/AccountsNavLink'
 import { IdentityLogin as IdentityLogin_eddfd23631b1f701bbe2c1a1fa6b5c65 } from '../../components/IdentityLogin'
 import { SessionKeeper as SessionKeeper_97617d0d29f7ce254d52952549197e42 } from '../../components/SessionKeeper'
+import { AccountsView as AccountsView_c84ec78701c8b85a431b85105841ecf3 } from '../../components/accounts/AccountsView'
 import { WelcomeWidget as WelcomeWidget_ab83ff7e88da8d3530831f296ec4756a } from '@payloadcms/ui/rsc'
 import { CollectionCards as CollectionCards_ab83ff7e88da8d3530831f296ec4756a } from '@payloadcms/ui/rsc'
 import { CollectionQueryWidget as CollectionQueryWidget_ab83ff7e88da8d3530831f296ec4756a } from '@payloadcms/ui/rsc'
@@ -68,8 +70,10 @@ export const importMap = {
   "@payloadcms/richtext-lexical/client#FixedToolbarFeatureClient": FixedToolbarFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
   "@payloadcms/ui/rsc#LLMInstructionsCell": LLMInstructionsCell_ab83ff7e88da8d3530831f296ec4756a,
   "/components/LogoutButton#LogoutButton": LogoutButton_8f8437271bb1185a7d11b63d7e5de4b9,
+  "/components/accounts/AccountsNavLink#AccountsNavLink": AccountsNavLink_61e761074fa9661ed217e29fa718b2fd,
   "/components/IdentityLogin#IdentityLogin": IdentityLogin_eddfd23631b1f701bbe2c1a1fa6b5c65,
   "/components/SessionKeeper#SessionKeeper": SessionKeeper_97617d0d29f7ce254d52952549197e42,
+  "/components/accounts/AccountsView#AccountsView": AccountsView_c84ec78701c8b85a431b85105841ecf3,
   "@payloadcms/ui/rsc#WelcomeWidget": WelcomeWidget_ab83ff7e88da8d3530831f296ec4756a,
   "@payloadcms/ui/rsc#CollectionCards": CollectionCards_ab83ff7e88da8d3530831f296ec4756a,
   "@payloadcms/ui/rsc#CollectionQueryWidget": CollectionQueryWidget_ab83ff7e88da8d3530831f296ec4756a,
