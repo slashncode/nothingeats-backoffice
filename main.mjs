@@ -2,7 +2,7 @@
 // handler from `dist/server` and the admin's static files from `dist/client`. Migrations run when
 // Payload starts (prodMigrations), so there is no separate `migrate` mode.
 import { serve } from 'srvx';
-import { serveStatic } from 'srvx/static';
+import { staticMiddleware } from 'srvx/static';
 
 // eslint-disable-next-line antfu/no-import-dist -- the image runs the build output on purpose
 import app from './dist/server/server.js';
@@ -17,7 +17,7 @@ serve({
     port: Number(process.env.HTTP__PORT ?? 8080),
     hostname: '0.0.0.0',
     middleware: [
-        serveStatic({ dir: 'dist/client' }),
+        staticMiddleware({ dir: 'dist/client' }),
     ],
     fetch: app.fetch,
     gracefulShutdown: true,
