@@ -6,6 +6,7 @@ import { s3Storage } from '@payloadcms/storage-s3';
 import { sharpTransformer } from '@payloadcms/transformer-sharp';
 import { buildConfig } from 'payload';
 
+import { accountEndpoints } from './accounts/api';
 import { admins } from './collections/Admins';
 import { ArticleCategories } from './collections/ArticleCategories';
 import { Articles } from './collections/Articles';
@@ -113,6 +114,7 @@ export default buildConfig({
     endpoints: [
         ...healthEndpoints,
         ...contentEndpoints,
+        ...accountEndpoints(config.identity),
     ],
     onInit: async (payload) => {
         if (config.seed.onEmpty) {
