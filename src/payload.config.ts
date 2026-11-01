@@ -7,12 +7,18 @@ import { sharpTransformer } from '@payloadcms/transformer-sharp';
 import { buildConfig } from 'payload';
 
 import { admins } from './collections/Admins';
+import { ArticleCategories } from './collections/ArticleCategories';
+import { Articles } from './collections/Articles';
 import { Badges } from './collections/Badges';
 import { Deals } from './collections/Deals';
 import { Dishes } from './collections/Dishes';
 import { Media } from './collections/Media';
 import { Restaurants } from './collections/Restaurants';
+import { Tags } from './collections/Tags';
+import { Texts } from './collections/Texts';
 import { loadConfig } from './config';
+import { contentEndpoints } from './content/api';
+import { CoachSuggestions } from './globals/CoachSuggestions';
 import { DealPlanner } from './globals/DealPlanner';
 import { Wheel } from './globals/Wheel';
 import { healthEndpoints } from './health';
@@ -22,6 +28,7 @@ import { startRelay } from './outbox/relay';
 import { outboxEvents } from './outbox/table';
 import { seedCommand } from './seed/command';
 import { seed } from './seed/seed';
+import { startTextSync } from './texts/sync';
 
 const dirname = path.dirname(fileURLToPath(import.meta.url));
 const config = loadConfig();
@@ -59,10 +66,14 @@ export default buildConfig({
         Dishes,
         Deals,
         Badges,
+        Articles,
+        ArticleCategories,
+        Tags,
+        Texts,
         Media,
         Admins,
     ],
-    globals: [DealPlanner, Wheel],
+    globals: [DealPlanner, Wheel, CoachSuggestions],
     cli: {
         commands: { seed: seedCommand },
     },
@@ -94,15 +105,20 @@ export default buildConfig({
         push: false,
         prodMigrations: migrations,
     }),
-    endpoints: healthEndpoints,
+    endpoints: [
+        ...healthEndpoints,
+        ...contentEndpoints,
+    ],
     onInit: async (payload) => {
         if (config.seed.onEmpty) {
             const { totalDocs } = await payload.count({ collection: 'restaurants', overrideAccess: true });
             if (totalDocs === 0)
                 payload.logger.info(await seed(payload, path.resolve(config.seed.directory)), 'Loaded the starting content');
         }
+        // Only the serving process works in the background: the relay and the text sync.
         if (!config.outbox.relayEnabled)
             return;
+        startTextSync(payload, config.texts.defaultsUrl, config.texts.syncMinutes * 60_000);
         startRelay(payload, {
             bootstrapServers: config.kafka.bootstrapServers,
             pollIntervalMs: config.outbox.pollIntervalMs,

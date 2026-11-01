@@ -32,6 +32,9 @@ const environment = z.object({
     // A fresh cluster: load the starting content when there are no restaurants yet.
     SEED__ON_EMPTY: z.stringbool().default(false),
     SEED__DIRECTORY: z.string().default('seed'),
+    // Where the deployed shop publishes its default texts (`<namespace>.<language>.json`).
+    TEXTS__DEFAULTS_URL: z.url().default('http://nothingeats.localhost/locales'),
+    TEXTS__SYNC_MINUTES: z.coerce.number().int().positive().default(10),
 });
 
 export interface Config {
@@ -45,6 +48,7 @@ export interface Config {
     kafka: { bootstrapServers: string[] };
     outbox: { relayEnabled: boolean; pollIntervalMs: number; retentionDays: number };
     seed: { onEmpty: boolean; directory: string };
+    texts: { defaultsUrl: string; syncMinutes: number };
 }
 
 export function loadConfig(source: Record<string, string | undefined> = process.env): Config {
@@ -83,5 +87,6 @@ export function loadConfig(source: Record<string, string | undefined> = process.
             retentionDays: env.OUTBOX__RETENTION_DAYS,
         },
         seed: { onEmpty: env.SEED__ON_EMPTY, directory: env.SEED__DIRECTORY },
+        texts: { defaultsUrl: env.TEXTS__DEFAULTS_URL, syncMinutes: env.TEXTS__SYNC_MINUTES },
     };
 }

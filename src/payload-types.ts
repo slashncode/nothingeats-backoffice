@@ -62,6 +62,38 @@ export type SupportedTimezones =
   | 'Pacific/Fiji';
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "LexicalNodes_82795421".
+ */
+export type LexicalNodes_82795421 =
+  | SerializedTextNode
+  | SerializedTabNode
+  | SerializedLineBreakNode
+  | SerializedParagraphNode<LexicalNodes_82795421>
+  | SerializedHorizontalRuleNode
+  | SerializedUploadNode<'media'>
+  | SerializedQuoteNode<LexicalNodes_82795421>
+  | SerializedRelationshipNode<
+      | 'restaurants'
+      | 'dishes'
+      | 'deals'
+      | 'badges'
+      | 'articles'
+      | 'article-categories'
+      | 'tags'
+      | 'texts'
+      | 'admins'
+      | 'payload-kv'
+      | 'payload-locked-documents'
+      | 'payload-preferences'
+      | 'payload-migrations'
+    >
+  | SerializedAutoLinkNode<LexicalNodes_82795421, LexicalLinkFields>
+  | SerializedLinkNode<LexicalNodes_82795421, LexicalLinkFields>
+  | SerializedListNode<LexicalNodes_82795421>
+  | SerializedListItemNode<LexicalNodes_82795421>
+  | SerializedHeadingNode<LexicalNodes_82795421>;
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "LexicalNodes_3DE324E4".
  */
 export type LexicalNodes_3DE324E4 =
@@ -83,6 +115,10 @@ export interface Config {
     dishes: Dish;
     deals: Deal;
     badges: Badge;
+    articles: Article;
+    'article-categories': ArticleCategory;
+    tags: Tag;
+    texts: Text;
     media: Media;
     admins: Admin;
     'payload-kv': PayloadKv;
@@ -97,6 +133,10 @@ export interface Config {
     dishes: DishesSelect<false> | DishesSelect<true>;
     deals: DealsSelect<false> | DealsSelect<true>;
     badges: BadgesSelect<false> | BadgesSelect<true>;
+    articles: ArticlesSelect<false> | ArticlesSelect<true>;
+    'article-categories': ArticleCategoriesSelect<false> | ArticleCategoriesSelect<true>;
+    tags: TagsSelect<false> | TagsSelect<true>;
+    texts: TextsSelect<false> | TextsSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     admins: AdminsSelect<false> | AdminsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
@@ -112,10 +152,12 @@ export interface Config {
   globals: {
     'deal-planner': DealPlanner;
     wheel: Wheel;
+    'coach-suggestions': CoachSuggestion;
   };
   globalsSelect: {
     'deal-planner': DealPlannerSelect<false> | DealPlannerSelect<true>;
     wheel: WheelSelect<false> | WheelSelect<true>;
+    'coach-suggestions': CoachSuggestionsSelect<false> | CoachSuggestionsSelect<true>;
   };
   locale: 'de' | 'en';
   widgets: {
@@ -421,6 +463,99 @@ export interface Badge {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "articles".
+ */
+export interface Article {
+  id: string;
+  title: string;
+  /**
+   * One slug for both languages, e.g. the-pizza-that-never-came.
+   */
+  slug: string;
+  excerpt: string;
+  cover?: (string | null) | Media;
+  body: LexicalRichText<LexicalNodes_82795421>;
+  category?: (string | null) | ArticleCategory;
+  tags?: (string | Tag)[] | null;
+  publishedAt?: string | null;
+  createdBy?: {
+    relationTo: 'admins';
+    value: string | Admin;
+  } | null;
+  updatedBy?: {
+    relationTo: 'admins';
+    value: string | Admin;
+  } | null;
+  updatedAt: string;
+  createdAt: string;
+  _status?: ('draft' | 'published') | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "article-categories".
+ */
+export interface ArticleCategory {
+  id: string;
+  name: string;
+  slug: string;
+  position: number;
+  createdBy?: {
+    relationTo: 'admins';
+    value: string | Admin;
+  } | null;
+  updatedBy?: {
+    relationTo: 'admins';
+    value: string | Admin;
+  } | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tags".
+ */
+export interface Tag {
+  id: string;
+  name: string;
+  slug: string;
+  createdBy?: {
+    relationTo: 'admins';
+    value: string | Admin;
+  } | null;
+  updatedBy?: {
+    relationTo: 'admins';
+    value: string | Admin;
+  } | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * Every text of the shop. Leave empty for the default. Placeholders like {count} must stay.
+ *
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "texts".
+ */
+export interface Text {
+  id: string;
+  key: string;
+  namespace: 'web' | 'ui';
+  defaultDe?: string | null;
+  defaultEn?: string | null;
+  value?: string | null;
+  orphaned?: boolean | null;
+  createdBy?: {
+    relationTo: 'admins';
+    value: string | Admin;
+  } | null;
+  updatedBy?: {
+    relationTo: 'admins';
+    value: string | Admin;
+  } | null;
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -458,6 +593,22 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'badges';
         value: string | Badge;
+      } | null)
+    | ({
+        relationTo: 'articles';
+        value: string | Article;
+      } | null)
+    | ({
+        relationTo: 'article-categories';
+        value: string | ArticleCategory;
+      } | null)
+    | ({
+        relationTo: 'tags';
+        value: string | Tag;
+      } | null)
+    | ({
+        relationTo: 'texts';
+        value: string | Text;
       } | null)
     | ({
         relationTo: 'media';
@@ -627,6 +778,66 @@ export interface BadgesSelect<T extends boolean = true> {
   updatedAt?: T;
   createdAt?: T;
   _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "articles_select".
+ */
+export interface ArticlesSelect<T extends boolean = true> {
+  title?: T;
+  slug?: T;
+  excerpt?: T;
+  cover?: T;
+  body?: T;
+  category?: T;
+  tags?: T;
+  publishedAt?: T;
+  createdBy?: T;
+  updatedBy?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  _status?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "article-categories_select".
+ */
+export interface ArticleCategoriesSelect<T extends boolean = true> {
+  name?: T;
+  slug?: T;
+  position?: T;
+  createdBy?: T;
+  updatedBy?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "tags_select".
+ */
+export interface TagsSelect<T extends boolean = true> {
+  name?: T;
+  slug?: T;
+  createdBy?: T;
+  updatedBy?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "texts_select".
+ */
+export interface TextsSelect<T extends boolean = true> {
+  key?: T;
+  namespace?: T;
+  defaultDe?: T;
+  defaultEn?: T;
+  value?: T;
+  orphaned?: T;
+  createdBy?: T;
+  updatedBy?: T;
+  updatedAt?: T;
+  createdAt?: T;
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
@@ -830,6 +1041,32 @@ export interface Wheel {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "coach-suggestions".
+ */
+export interface CoachSuggestion {
+  id: string;
+  /**
+   * Short, the way a customer would type it; the coach takes 500 characters at most.
+   */
+  suggestions?:
+    | {
+        text: string;
+        id?: string | null;
+      }[]
+    | null;
+  createdBy?: {
+    relationTo: 'admins';
+    value: string | Admin;
+  } | null;
+  updatedBy?: {
+    relationTo: 'admins';
+    value: string | Admin;
+  } | null;
+  updatedAt?: string | null;
+  createdAt?: string | null;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "deal-planner_select".
  */
 export interface DealPlannerSelect<T extends boolean = true> {
@@ -885,6 +1122,23 @@ export interface WheelSelect<T extends boolean = true> {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "coach-suggestions_select".
+ */
+export interface CoachSuggestionsSelect<T extends boolean = true> {
+  suggestions?:
+    | T
+    | {
+        text?: T;
+        id?: T;
+      };
+  createdBy?: T;
+  updatedBy?: T;
+  updatedAt?: T;
+  createdAt?: T;
+  globalType?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "welcome_widget".
  */
 export interface WelcomeWidget {
@@ -910,7 +1164,17 @@ export interface CollectionsWidget {
 export interface CollectionQueryWidget {
   data?: {
     title?: string | null;
-    relatedCollection: 'restaurants' | 'dishes' | 'deals' | 'badges' | 'media' | 'admins';
+    relatedCollection:
+      | 'restaurants'
+      | 'dishes'
+      | 'deals'
+      | 'badges'
+      | 'articles'
+      | 'article-categories'
+      | 'tags'
+      | 'texts'
+      | 'media'
+      | 'admins';
     where?:
       | {
           [k: string]: unknown;
@@ -932,7 +1196,20 @@ export interface CollectionQueryWidget {
  */
 export interface ActivityWidget {
   data?: {
-    excludedCollections?: ('restaurants' | 'dishes' | 'deals' | 'badges' | 'media' | 'admins')[] | null;
+    excludedCollections?:
+      | (
+          | 'restaurants'
+          | 'dishes'
+          | 'deals'
+          | 'badges'
+          | 'articles'
+          | 'article-categories'
+          | 'tags'
+          | 'texts'
+          | 'media'
+          | 'admins'
+        )[]
+      | null;
   };
   width: 'small' | 'medium' | 'large' | 'x-large' | 'full';
 }
@@ -1003,6 +1280,62 @@ export interface SerializedParagraphNode<TChildren> extends SerializedLexicalEle
   type: 'paragraph';
   textFormat: number;
   textStyle: string;
+}
+
+export interface SerializedHorizontalRuleNode {
+  type: 'horizontalrule';
+  /** @deprecated Ignored when loading. Typed as required only to match Lexical's types: rich text sent through the API, CLI or MCP may not contain it. */
+  version: number;
+}
+
+export type SerializedUploadNode<TSlugs extends keyof Config['collections'], TFields = { [k: string]: unknown }> = {
+  type: 'upload';
+  format: LexicalElementFormat;
+  id: string;
+  /** @deprecated Ignored when loading. Typed as required only to match Lexical's types: rich text sent through the API, CLI or MCP may not contain it. */
+  version: number;
+  fields: TFields;
+} & {
+  [TSlug in TSlugs]: {
+    relationTo: TSlug;
+    value: Config['collections'][TSlug]['id'] | Config['collections'][TSlug];
+  };
+}[TSlugs];
+
+export interface SerializedQuoteNode<TChildren> extends SerializedLexicalElementBase<TChildren> {
+  type: 'quote';
+}
+
+export type SerializedRelationshipNode<TSlugs extends keyof Config['collections']> = {
+  type: 'relationship';
+  format: LexicalElementFormat;
+  /** @deprecated Ignored when loading. Typed as required only to match Lexical's types: rich text sent through the API, CLI or MCP may not contain it. */
+  version: number;
+} & {
+  [TSlug in TSlugs]: {
+    relationTo: TSlug;
+    value: Config['collections'][TSlug]['id'] | Config['collections'][TSlug];
+  };
+}[TSlugs];
+
+export interface LexicalLinkFields {
+  [k: string]: unknown;
+  doc?: {
+    relationTo: string;
+    value: Config['db']['defaultIDType'] | { [k: string]: unknown; id: Config['db']['defaultIDType'] };
+  } | null;
+  linkType: 'custom' | 'internal';
+  newTab: boolean;
+  url?: string;
+}
+export interface SerializedLinkNode<TChildren, TFields = LexicalLinkFields> extends SerializedLexicalElementBase<TChildren> {
+  type: 'link';
+  fields: TFields;
+  id?: string;
+}
+export interface SerializedAutoLinkNode<TChildren, TFields = LexicalLinkFields> extends SerializedLexicalElementBase<TChildren> {
+  type: 'autolink';
+  fields: TFields;
 }
 
 export interface SerializedListNode<TChildren> extends SerializedLexicalElementBase<TChildren> {
