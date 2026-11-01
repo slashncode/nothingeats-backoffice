@@ -5,6 +5,13 @@
 allowBuilds:
   esbuild: false
 
+# The image ships node_modules for linux/amd64 and linux/arm64 (the local k3d cluster); sharp's
+# prebuilt binaries are optional dependencies per platform.
+supportedArchitectures:
+  os: [current, linux]
+  cpu: [current, x64, arm64]
+  libc: [glibc]
+
 shellEmulator: true
 trustPolicy: no-downgrade
 # semver 6.3.1 was published without provenance after 7.x had it; same exclusion as nothingeats-ui.

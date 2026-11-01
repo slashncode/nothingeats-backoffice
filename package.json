@@ -16,7 +16,8 @@
     "scripts": {
         "dev": "OUTBOX__RELAY_ENABLED=true vite dev",
         "build": "PAYLOAD__SECRET=build-time-placeholder-not-used-at-runtime payload build",
-        "start": "OUTBOX__RELAY_ENABLED=true srvx --prod --dir=. --static=dist/client --entry=dist/server/server.js",
+        "start": "OUTBOX__RELAY_ENABLED=true node main.mjs serve",
+        "image:prepare": "pnpm prune --prod",
         "payload": "payload",
         "generate:importmap": "payload generate:importmap",
         "generate:types": "payload generate:types",
@@ -39,6 +40,7 @@
         "payload": "4.0.0-beta.6",
         "react": "19.3.1",
         "react-dom": "19.3.1",
+        "sharp": "^0.35.5",
         "srvx": "0.11.21",
         "zod": "^4.6.7"
     },

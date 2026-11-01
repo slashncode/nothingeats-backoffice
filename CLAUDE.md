@@ -6,7 +6,8 @@ Backoffice of NothingEats: a Payload 4 (beta) headless CMS on TanStack Start, th
 
 - `scripts/dev-env.sh pnpm dev` — admin at http://localhost:3100/admin against the local cluster (secrets from the gitops repo's SOPS files, env only). Needs `kubectl --context k3d-nothingeats -n nothingeats port-forward svc/garage 13900:3900`.
 - `pnpm test` / `pnpm lint` / `pnpm typecheck`
-- `pnpm build` — `dist/client` (static, under `/admin/assets`) and `dist/server` (srvx entry); Payload packages stay external, so the image ships `node_modules`.
+- `pnpm build` — `dist/client` (static, under `/admin/assets`) and `dist/server`; Payload packages stay external, so the image ships `node_modules` (`pnpm image:prepare` prunes them in CI; sharp for linux x64 and arm64 via `supportedArchitectures`).
+- `pnpm start` / the image: `main.mjs serve` (srvx with the static files). Migrations run on start (`prodMigrations`); `SEED__ON_EMPTY=true` loads `seed/` into an empty database. Probes: `/api/backoffice/health/live|ready`.
 - `scripts/dev-env.sh pnpm generate:importmap` / `generate:types` after adding admin components or fields.
 - `scripts/dev-env.sh pnpm payload migrate:create <name>` after schema changes, `… payload migrate` to apply (no dev push: `push: false`).
 - `scripts/dev-env.sh pnpm payload seed` — starting content from `seed/` where it is missing (idempotent).
@@ -15,6 +16,7 @@ Backoffice of NothingEats: a Payload 4 (beta) headless CMS on TanStack Start, th
 
 - Published content reaches the shop only through the outbox (`docs/events.md`): `publishDocument`/`publishGlobal` write a full snapshot in the transaction of the change. Never publish to Kafka from a hook directly, never write a snapshot without `req`.
 - Payload 4 publishes per language (`localizeStatus` is forced on with localization). Events need every language, so a snapshot with an unpublished language fails the publish; publish all languages (`publishAllLocales` in the Local API).
+- Packages the server bundle imports directly (e.g. `sharp`) must be direct dependencies: pnpm links only those at the root.
 - Payload 4's Local API enforces access by default: system code passes `overrideAccess: true` on purpose.
 - Nothing published is deleted (restaurants and dishes archive, deals cancel, badges deactivate): other services and past orders point at the ids.
 - The vocabulary in `src/catalog/vocabulary.ts` mirrors catalog, search and nothingeats-ui; new keys need code there first.

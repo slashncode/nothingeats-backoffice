@@ -29,6 +29,9 @@ const environment = z.object({
     OUTBOX__RELAY_ENABLED: z.stringbool().default(false),
     OUTBOX__POLL_INTERVAL_MS: z.coerce.number().int().positive().default(500),
     OUTBOX__RETENTION_DAYS: z.coerce.number().int().positive().default(7),
+    // A fresh cluster: load the starting content when there are no restaurants yet.
+    SEED__ON_EMPTY: z.stringbool().default(false),
+    SEED__DIRECTORY: z.string().default('seed'),
 });
 
 export interface Config {
@@ -41,6 +44,7 @@ export interface Config {
     media: { publicPath: string };
     kafka: { bootstrapServers: string[] };
     outbox: { relayEnabled: boolean; pollIntervalMs: number; retentionDays: number };
+    seed: { onEmpty: boolean; directory: string };
 }
 
 export function loadConfig(source: Record<string, string | undefined> = process.env): Config {
@@ -78,5 +82,6 @@ export function loadConfig(source: Record<string, string | undefined> = process.
             pollIntervalMs: env.OUTBOX__POLL_INTERVAL_MS,
             retentionDays: env.OUTBOX__RETENTION_DAYS,
         },
+        seed: { onEmpty: env.SEED__ON_EMPTY, directory: env.SEED__DIRECTORY },
     };
 }

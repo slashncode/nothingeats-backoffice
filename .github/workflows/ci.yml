@@ -18,6 +18,15 @@ jobs:
     permissions:
       contents: read
 
+  image:
+    if: (github.event_name == 'push' || github.event_name == 'workflow_dispatch') && github.ref == 'refs/heads/main'
+    needs: pnpm
+    uses: slashncode/nothingeats-ci/.github/workflows/pnpm-image.yml@main
+    permissions:
+      contents: read
+      packages: write # push the image to GHCR
+      id-token: write # keyless cosign signing
+
   codeql:
     uses: slashncode/nothingeats-ci/.github/workflows/codeql.yml@main
     permissions:

@@ -15,10 +15,13 @@ import { Restaurants } from './collections/Restaurants';
 import { loadConfig } from './config';
 import { DealPlanner } from './globals/DealPlanner';
 import { Wheel } from './globals/Wheel';
+import { healthEndpoints } from './health';
 import { i18n } from './i18n';
+import { migrations } from './migrations';
 import { startRelay } from './outbox/relay';
 import { outboxEvents } from './outbox/table';
 import { seedCommand } from './seed/command';
+import { seed } from './seed/seed';
 
 const dirname = path.dirname(fileURLToPath(import.meta.url));
 const config = loadConfig();
@@ -86,10 +89,18 @@ export default buildConfig({
             }),
         ],
         migrationDir: path.resolve(dirname, 'migrations'),
-        // Migrations everywhere, the dev server included: no interactive schema push.
+        // Migrations everywhere, the dev server included: no interactive schema push. In production
+        // Payload applies pending ones on start (one replica; no separate migrate job).
         push: false,
+        prodMigrations: migrations,
     }),
-    onInit: (payload) => {
+    endpoints: healthEndpoints,
+    onInit: async (payload) => {
+        if (config.seed.onEmpty) {
+            const { totalDocs } = await payload.count({ collection: 'restaurants', overrideAccess: true });
+            if (totalDocs === 0)
+                payload.logger.info(await seed(payload, path.resolve(config.seed.directory)), 'Loaded the starting content');
+        }
         if (!config.outbox.relayEnabled)
             return;
         startRelay(payload, {
