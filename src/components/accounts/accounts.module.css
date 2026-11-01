@@ -1,0 +1,66 @@
+/* The accounts view in Payload's own look: its tokens and the proportions of its list header. */
+.view {
+    display: grid;
+    gap: var(--spacer-3);
+    padding-block: var(--spacer-2) var(--spacer-4);
+}
+
+.header {
+    display: grid;
+    gap: var(--spacer-2);
+}
+
+.title {
+    margin: 0;
+    font-size: var(--text-heading-xl-font-size);
+    font-weight: var(--text-heading-xl-font-weight);
+    line-height: var(--text-heading-xl-line-height);
+    letter-spacing: var(--text-heading-xl-letter-spacing);
+}
+
+.intro {
+    margin: 0;
+    color: var(--color-text-secondary);
+}
+
+.search {
+    box-sizing: border-box;
+    width: 100%;
+    max-width: 24rem;
+    min-height: var(--field-min-height-medium);
+    padding-inline: var(--field-padding-inline);
+    border: 1px solid var(--field-color-border);
+    border-radius: var(--field-border-radius);
+    background: var(--field-color-bg);
+    color: var(--field-color-text);
+    font: inherit;
+}
+
+.search::placeholder {
+    color: var(--field-color-placeholder);
+}
+
+.search:hover {
+    border-color: var(--field-color-border-hover);
+}
+
+.search:focus-visible {
+    border-color: var(--field-color-border-focus);
+    outline: 1px solid var(--field-color-border-focus);
+}
+
+.error {
+    margin: 0;
+    color: var(--color-text-danger);
+}
+
+.actions {
+    display: flex;
+    gap: var(--spacer-1);
+    align-items: center;
+    white-space: nowrap;
+}
+
+.muted {
+    color: var(--color-text-secondary);
+}

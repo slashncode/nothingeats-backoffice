@@ -2,7 +2,9 @@
 
 import type { BackofficeTranslationKeys, BackofficeTranslations } from '../../i18n';
 import { Button, ConfirmationModal, useModal, useTranslation } from '@payloadcms/ui';
-import { useCallback, useEffect, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+
+import styles from './accounts.module.css';
 
 interface Account {
     id: string;
@@ -50,11 +52,14 @@ export function AccountsClient({ ownId }: { ownId: string }) {
     const [error, setError] = useState<string>();
     const [pending, setPending] = useState<Action>();
     const { openModal } = useModal();
+    // Only the newest request may fill the table: an earlier, slower one must not overwrite a search.
+    const latestRef = useRef(0);
     const date = (value: string | null) => (value
-        ? new Date(value).toLocaleDateString(i18n.language)
+        ? new Date(value).toLocaleDateString(i18n.language, { dateStyle: 'medium' })
         : '–');
 
     const load = useCallback(async (search: string, cursor?: string) => {
+        const ticket = ++latestRef.current;
         setBusy(true);
         setError(undefined);
         try {
@@ -64,15 +69,19 @@ export function AccountsClient({ ownId }: { ownId: string }) {
             if (cursor)
                 params.set('cursor', cursor);
             const page = await call('GET', `?${params}`) as AccountPage;
-            setPages(previous => (cursor
-                ? [...previous, page]
-                : [page]));
+            if (ticket === latestRef.current) {
+                setPages(previous => (cursor
+                    ? [...previous, page]
+                    : [page]));
+            }
         }
         catch (failure) {
-            setError((failure as Error).message);
+            if (ticket === latestRef.current)
+                setError((failure as Error).message);
         }
         finally {
-            setBusy(false);
+            if (ticket === latestRef.current)
+                setBusy(false);
         }
     }, []);
 
@@ -104,18 +113,20 @@ export function AccountsClient({ ownId }: { ownId: string }) {
     const next = pages.at(-1)?.nextCursor;
 
     return (
-        <div style={{ display: 'grid', gap: 'var(--base)', paddingBlock: 'var(--base)' }}>
-            <h1>{t('backoffice:accountsTitle')}</h1>
-            <p>{t('backoffice:accountsIntro')}</p>
+        <div className={styles.view}>
+            <header className={styles.header}>
+                <h1 className={styles.title}>{t('backoffice:accountsTitle')}</h1>
+                <p className={styles.intro}>{t('backoffice:accountsIntro')}</p>
+            </header>
             <input
+                className={styles.search}
                 type="search"
                 aria-label={t('backoffice:accountsSearch')}
                 placeholder={t('backoffice:accountsSearch')}
                 value={query}
                 onChange={event => setQuery(event.target.value)}
-                style={{ maxWidth: '24rem' }}
             />
-            {error && <p role="alert" style={{ color: 'var(--theme-error-500)' }}>{t('backoffice:accountsFailed', { code: error })}</p>}
+            {error && <p role="alert" className={styles.error}>{t('backoffice:accountsFailed', { code: error })}</p>}
             <div className="table">
                 <table>
                     <thead>
@@ -145,15 +156,17 @@ export function AccountsClient({ ownId }: { ownId: string }) {
                                                 ? t('backoffice:accountsActive')
                                                 : t('backoffice:accountsUnverified')}
                                     </td>
-                                    <td style={{ display: 'flex', flexWrap: 'wrap', gap: 'calc(var(--base) / 2)' }}>
-                                        {!own && (account.lockedAt
-                                            ? <Button buttonStyle="secondary" onClick={() => act(account, 'DELETE', '/lock')}>{t('backoffice:accountsUnlock')}</Button>
-                                            : <Button buttonStyle="secondary" onClick={() => act(account, 'PUT', '/lock', t('backoffice:accountsConfirmLock', { email: account.email }))}>{t('backoffice:accountsLock')}</Button>)}
-                                        {!own && (admin
-                                            ? <Button buttonStyle="secondary" onClick={() => act(account, 'DELETE', '/roles/admin', t('backoffice:accountsConfirmRevoke', { email: account.email }))}>{t('backoffice:accountsRevokeAdmin')}</Button>
-                                            : <Button buttonStyle="secondary" onClick={() => act(account, 'PUT', '/roles/admin', t('backoffice:accountsConfirmGrant', { email: account.email }))}>{t('backoffice:accountsMakeAdmin')}</Button>)}
-                                        {!own && <Button buttonStyle="destructive" onClick={() => act(account, 'DELETE', '', t('backoffice:accountsConfirmDelete', { email: account.email }))}>{t('backoffice:accountsDelete')}</Button>}
-                                        {own && <span>{t('backoffice:accountsYou')}</span>}
+                                    <td>
+                                        <div className={styles.actions}>
+                                            {!own && (account.lockedAt
+                                                ? <Button margin={false} buttonStyle="secondary" onClick={() => act(account, 'DELETE', '/lock')}>{t('backoffice:accountsUnlock')}</Button>
+                                                : <Button margin={false} buttonStyle="secondary" onClick={() => act(account, 'PUT', '/lock', t('backoffice:accountsConfirmLock', { email: account.email }))}>{t('backoffice:accountsLock')}</Button>)}
+                                            {!own && (admin
+                                                ? <Button margin={false} buttonStyle="secondary" onClick={() => act(account, 'DELETE', '/roles/admin', t('backoffice:accountsConfirmRevoke', { email: account.email }))}>{t('backoffice:accountsRevokeAdmin')}</Button>
+                                                : <Button margin={false} buttonStyle="secondary" onClick={() => act(account, 'PUT', '/roles/admin', t('backoffice:accountsConfirmGrant', { email: account.email }))}>{t('backoffice:accountsMakeAdmin')}</Button>)}
+                                            {!own && <Button margin={false} buttonStyle="destructive" onClick={() => act(account, 'DELETE', '', t('backoffice:accountsConfirmDelete', { email: account.email }))}>{t('backoffice:accountsDelete')}</Button>}
+                                            {own && <span className={styles.muted}>{t('backoffice:accountsYou')}</span>}
+                                        </div>
                                     </td>
                                 </tr>
                             );
@@ -162,7 +175,7 @@ export function AccountsClient({ ownId }: { ownId: string }) {
                 </table>
             </div>
             {!busy && accounts.length === 0 && <p>{t('backoffice:accountsNone')}</p>}
-            {next && <Button buttonStyle="secondary" disabled={busy} onClick={() => void load(query, next)}>{t('backoffice:accountsMore')}</Button>}
+            {next && <Button margin={false} buttonStyle="secondary" disabled={busy} onClick={() => void load(query, next)}>{t('backoffice:accountsMore')}</Button>}
             <ConfirmationModal
                 modalSlug={CONFIRM_MODAL}
                 heading={t('backoffice:accountsConfirmTitle')}

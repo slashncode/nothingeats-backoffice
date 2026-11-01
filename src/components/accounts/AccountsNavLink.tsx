@@ -1,15 +1,17 @@
 'use client';
 
 import type { BackofficeTranslationKeys, BackofficeTranslations } from '../../i18n';
-import { useTranslation } from '@payloadcms/ui';
+import { PayloadLink, usePathname, useTranslation } from '@payloadcms/ui';
 
-/** The accounts view in the sidebar, after the collections. */
+const PATH = '/admin/accounts';
+
+/** The accounts view in the sidebar, after the collections; marked like Payload's own links. */
 export function AccountsNavLink() {
     const { t } = useTranslation<BackofficeTranslations, BackofficeTranslationKeys>();
-    const selected = typeof window !== 'undefined' && window.location.pathname.startsWith('/admin/accounts');
+    const selected = usePathname()?.startsWith(PATH) ?? false;
     return (
-        <a href="/admin/accounts" className={`nav__link${selected ? ' nav__link--selected' : ''}`} aria-current={selected ? 'page' : undefined}>
+        <PayloadLink href={PATH} className={`nav__link${selected ? ' nav__link--selected' : ''}`} aria-current={selected ? 'page' : undefined}>
             <span className="nav__link-label">{t('backoffice:accountsTitle')}</span>
-        </a>
+        </PayloadLink>
     );
 }
