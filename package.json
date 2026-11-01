@@ -1,0 +1,59 @@
+{
+    "name": "nothingeats-backoffice",
+    "type": "module",
+    "version": "0.1.0",
+    "private": true,
+    "packageManager": "pnpm@12.15.0",
+    "description": "NothingEats backoffice: a Payload headless CMS that owns the shop's content and publishes it through an outbox.",
+    "license": "MIT",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/slashncode/nothingeats-backoffice.git"
+    },
+    "engines": {
+        "node": ">=24.22.1"
+    },
+    "scripts": {
+        "dev": "vite dev",
+        "build": "PAYLOAD__SECRET=build-time-placeholder-not-used-at-runtime payload build",
+        "start": "srvx --prod --dir=. --static=dist/client --entry=dist/server/server.js",
+        "payload": "payload",
+        "generate:importmap": "payload generate:importmap",
+        "generate:types": "payload generate:types",
+        "typecheck": "tsc --noEmit",
+        "lint": "eslint .",
+        "test": "vitest run"
+    },
+    "dependencies": {
+        "@payloadcms/db-postgres": "4.0.0-beta.6",
+        "@payloadcms/richtext-lexical": "4.0.0-beta.6",
+        "@payloadcms/storage-s3": "4.0.0-beta.6",
+        "@payloadcms/tanstack-start": "4.0.0-beta.6",
+        "@payloadcms/transformer-sharp": "4.0.0-beta.6",
+        "@payloadcms/translations": "4.0.0-beta.6",
+        "@payloadcms/ui": "4.0.0-beta.6",
+        "@tanstack/react-router": "^1.170.46",
+        "@tanstack/react-start": "^1.169.4",
+        "jose": "^6.2.14",
+        "payload": "4.0.0-beta.6",
+        "react": "19.3.1",
+        "react-dom": "19.3.1",
+        "srvx": "0.11.21",
+        "zod": "^4.6.7"
+    },
+    "devDependencies": {
+        "@antfu/eslint-config": "^10.0.0",
+        "@eslint-react/eslint-plugin": "^5.28.8",
+        "@types/node": "^24.19.2",
+        "@types/react": "19.3.0",
+        "@types/react-dom": "19.3.0",
+        "@vitejs/plugin-react": "6.0.3",
+        "@vitejs/plugin-rsc": "^0.5.21",
+        "eslint": "^10.13.0",
+        "eslint-plugin-react-hooks": "^7.1.1",
+        "eslint-plugin-react-refresh": "^0.5.7",
+        "typescript": "~6.0.3",
+        "vite": "8.3.0",
+        "vitest": "^5.0.5"
+    }
+}
