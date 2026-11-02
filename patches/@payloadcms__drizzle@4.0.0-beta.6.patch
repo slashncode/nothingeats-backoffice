@@ -1,0 +1,13 @@
+diff --git a/dist/queries/buildOrderBy.js b/dist/queries/buildOrderBy.js
+index cfceb6a5652a975ff0c2075644a05ae57231b2da..a8fd947b5ae05c6a63aad8a005b45e7db0c1e954 100644
+--- a/dist/queries/buildOrderBy.js
++++ b/dist/queries/buildOrderBy.js
+@@ -40,6 +40,8 @@ import { getTableColumnFromPath } from './getTableColumnFromPath.js';
+         try {
+             const { columnName: sortTableColumnName, table: sortTable } = getTableColumnFromPath({
+                 adapter,
++                // A join sorts inside an aliased subquery: localized columns must join the alias, not the table.
++                aliasTable,
+                 collectionPath: sortProperty,
+                 fields,
+                 joins,

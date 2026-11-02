@@ -17,3 +17,5 @@ trustPolicy: no-downgrade
 # semver 6.3.1 was published without provenance after 7.x had it; same exclusion as nothingeats-ui.
 trustPolicyExclude:
   - semver@6.3.1
+patchedDependencies:
+  '@payloadcms/drizzle@4.0.0-beta.6': patches/@payloadcms__drizzle@4.0.0-beta.6.patch

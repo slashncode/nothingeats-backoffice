@@ -198,7 +198,8 @@ export const Restaurants: CollectionConfig = {
             type: 'join',
             collection: 'dishes',
             on: 'restaurant',
-            // Not by `section`: Payload 4.0.0-beta.6 breaks a join's query when it sorts by a localized field.
+            // In menu order. Sorting the list by a localized column (name, section) needs
+            // patches/@payloadcms__drizzle (Payload 4.0.0-beta.6 joined the unaliased table).
             defaultSort: 'position',
             defaultLimit: 100,
             label: { de: 'Speisekarte', en: 'Menu' },
