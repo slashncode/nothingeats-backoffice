@@ -13,6 +13,21 @@ function notBeforeFirstDay(value: unknown, { siblingData }: { siblingData: Recor
         : 'The last day cannot be before the first';
 }
 
+/** A deal as `backoffice.deal.v1` carries it; [cancelled] overrides the stored flag (a deleted dish ends its deals). */
+export function dealSnapshot(doc: Record<string, any>, cancelled: boolean = Boolean(doc.cancelled)) {
+    return {
+        dealId: doc.id,
+        dishId: typeof doc.dish === 'object' && doc.dish
+            ? doc.dish.id
+            : doc.dish,
+        percentOff: doc.percentOff,
+        // The picked days, as the instants catalog needs.
+        startsAt: startOfHamburgDay(hamburgDay(doc.startsAt)).toISOString(),
+        endsAt: endOfHamburgDay(hamburgDay(doc.endsAt)).toISOString(),
+        cancelled,
+    };
+}
+
 /**
  * Deals an editor schedules for whole days: from midnight of the first day to midnight after the
  * last, in Hamburg. Catalog plans its own on top (settings: the deal planner global) and leaves a
@@ -43,17 +58,7 @@ export const Deals: CollectionConfig = {
             publishDocument({
                 topic: DEAL_TOPIC,
                 type: 'nothingeats.backoffice.deal.published.v1',
-                snapshot: doc => ({
-                    dealId: doc.id,
-                    dishId: typeof doc.dish === 'object'
-                        ? doc.dish.id
-                        : doc.dish,
-                    percentOff: doc.percentOff,
-                    // The picked days, as the instants catalog needs.
-                    startsAt: startOfHamburgDay(hamburgDay(doc.startsAt)).toISOString(),
-                    endsAt: endOfHamburgDay(hamburgDay(doc.endsAt)).toISOString(),
-                    cancelled: Boolean(doc.cancelled),
-                }),
+                snapshot: doc => dealSnapshot(doc),
             }),
         ],
         beforeChange: [

@@ -1,8 +1,10 @@
-import type { CollectionConfig } from 'payload';
+import type { CollectionBeforeDeleteHook, CollectionConfig } from 'payload';
 
 import { cents, euros, slug } from '../catalog/validation';
 import { ALLERGENS, DIETARY_TAGS, MOODS } from '../catalog/vocabulary';
+import { enqueue } from '../outbox/outbox';
 import { image, publishDocument, texts } from '../publishing';
+import { DEAL_TOPIC, dealSnapshot } from './Deals';
 
 export const DISH_TOPIC = 'backoffice.dish.v1';
 
@@ -13,6 +15,101 @@ function veganWithoutAnimalAllergens(dietary: unknown, { siblingData }: { siblin
         ? 'A vegan dish cannot contain milk or eggs'
         : true;
 }
+
+/** A dish as `backoffice.dish.v1` carries it, from the published version with every language. */
+export function dishSnapshot(doc: Record<string, any>, overrides: { archived?: boolean } = {}) {
+    return {
+        dishId: doc.id,
+        restaurantId: typeof doc.restaurant === 'object'
+            ? doc.restaurant.id
+            : doc.restaurant,
+        slug: doc.slug,
+        section: texts(doc.section, 'section', 'dishes'),
+        name: texts(doc.name, 'name', 'dishes'),
+        description: texts(doc.description, 'description', 'dishes'),
+        priceCents: cents(doc.price),
+        dietary: [
+            ...(doc.dietary ?? []),
+        ].sort(),
+        allergens: [
+            ...(doc.allergens ?? []),
+        ].sort(),
+        spiceLevel: doc.spiceLevel,
+        calories: doc.calories,
+        moods: [
+            ...(doc.moods ?? []),
+        ].sort(),
+        position: doc.position,
+        available: Boolean(doc.available),
+        image: image(doc.image),
+        archived: Boolean(doc.archived),
+
+        ...overrides,
+    };
+}
+
+const DISH_EVENT = 'nothingeats.backoffice.dish.published.v1';
+const DEAL_EVENT = 'nothingeats.backoffice.deal.published.v1';
+
+/** Payload 4 keeps the publish status per language: published in any of them counts. */
+function wasPublished(status: unknown): boolean {
+    return status === 'published'
+        || (typeof status === 'object' && status !== null && Object.values(status).includes('published'));
+}
+
+/**
+ * Deleting a dish. One that reached the shop leaves it archived: catalog keeps archived dishes, so
+ * search, menus and past orders keep pointing at a known id. Its deals of the day go with it, a
+ * running or coming one cancelled in the shop first (a deal cannot outlive its dish). All in the
+ * delete's transaction, through the outbox; a draft that never reached the shop just goes.
+ */
+const leaveTheShop: CollectionBeforeDeleteHook = async ({ id, req }) => {
+    const deals = await req.payload.find({
+        collection: 'deals',
+        where: {
+            dish: { equals: id },
+        },
+        pagination: false,
+        depth: 0,
+        overrideAccess: true,
+        req,
+    });
+    for (const deal of deals.docs) {
+        const snapshot = dealSnapshot(deal, true);
+        if (!deal.cancelled && new Date(snapshot.endsAt).getTime() > Date.now()) {
+            await enqueue(req, {
+                topic: DEAL_TOPIC,
+                key: String(deal.id),
+                type: DEAL_EVENT,
+                data: snapshot,
+            });
+        }
+        await req.payload.delete({
+            collection: 'deals',
+            id: deal.id,
+            overrideAccess: true,
+            req,
+        });
+    }
+    const published = await req.payload.findByID({
+        collection: 'dishes',
+        id,
+        locale: 'all',
+        depth: 1,
+        draft: false,
+        overrideAccess: true,
+        disableErrors: true,
+        req,
+    });
+    if (published && wasPublished(published._status)) {
+        await enqueue(req, {
+            topic: DISH_TOPIC,
+            key: String(id),
+            type: DISH_EVENT,
+            data: dishSnapshot(published as Record<string, any>, { archived: true }),
+        });
+    }
+};
 
 /**
  * Dishes on the restaurants' menus. Published versions go to catalog (`backoffice.dish.v1`); like
@@ -36,10 +133,8 @@ export const Dishes: CollectionConfig = {
         group: { de: 'Katalog', en: 'Catalog' },
     },
     versions: { drafts: true },
-    access: {
-        delete: () => false,
-    },
     hooks: {
+        beforeDelete: [leaveTheShop],
         beforeValidate: [
             // Slugs are unique per restaurant (catalog's addresses are /restaurants/<slug>#<dish>).
             async ({ data, req, originalDoc }) => {
@@ -82,33 +177,8 @@ export const Dishes: CollectionConfig = {
         afterChange: [
             publishDocument({
                 topic: DISH_TOPIC,
-                type: 'nothingeats.backoffice.dish.published.v1',
-                snapshot: doc => ({
-                    dishId: doc.id,
-                    restaurantId: typeof doc.restaurant === 'object'
-                        ? doc.restaurant.id
-                        : doc.restaurant,
-                    slug: doc.slug,
-                    section: texts(doc.section, 'section', 'dishes'),
-                    name: texts(doc.name, 'name', 'dishes'),
-                    description: texts(doc.description, 'description', 'dishes'),
-                    priceCents: cents(doc.price),
-                    dietary: [
-                        ...(doc.dietary ?? []),
-                    ].sort(),
-                    allergens: [
-                        ...(doc.allergens ?? []),
-                    ].sort(),
-                    spiceLevel: doc.spiceLevel,
-                    calories: doc.calories,
-                    moods: [
-                        ...(doc.moods ?? []),
-                    ].sort(),
-                    position: doc.position,
-                    available: Boolean(doc.available),
-                    image: image(doc.image),
-                    archived: Boolean(doc.archived),
-                }),
+                type: DISH_EVENT,
+                snapshot: doc => dishSnapshot(doc),
             }),
         ],
     },

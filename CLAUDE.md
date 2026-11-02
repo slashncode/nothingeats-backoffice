@@ -18,7 +18,7 @@ Backoffice of NothingEats: a Payload 4 (beta) headless CMS on TanStack Start, th
 - Payload 4 publishes per language (`localizeStatus` is forced on with localization). Events need every language, so a snapshot with an unpublished language fails the publish; publish all languages (`publishAllLocales` in the Local API).
 - Packages the server bundle imports directly (e.g. `sharp`) must be direct dependencies: pnpm links only those at the root.
 - Payload 4's Local API enforces access by default: system code passes `overrideAccess: true` on purpose.
-- Nothing published is deleted (restaurants and dishes archive, deals cancel, badges deactivate): other services and past orders point at the ids.
+- Restaurants archive, deals cancel, badges deactivate: other services and past orders point at the ids. Dishes may be deleted: one that was published leaves the shop as an archived snapshot (catalog keeps the id), and its deals are deleted with it, a running one cancelled first (`beforeDelete` in `Dishes.ts`, one transaction with the outbox).
 - The vocabulary in `src/catalog/vocabulary.ts` mirrors catalog, search and nothingeats-ui; new keys need code there first.
 
 - Everything of the admin lives under `/admin` (pages, server functions at `/admin/_serverFn`, assets at `/admin/assets`) and `/api/backoffice`; the shop owns every other path on the same origin.
