@@ -127,7 +127,11 @@ export interface Config {
     'payload-migrations': PayloadMigration;
     'payload-llm-instructions': PayloadLlmInstruction;
   };
-  collectionsJoins: {};
+  collectionsJoins: {
+    restaurants: {
+      dishes: 'dishes';
+    };
+  };
   collectionsSelect: {
     restaurants: RestaurantsSelect<false> | RestaurantsSelect<true>;
     dishes: DishesSelect<false> | DishesSelect<true>;
@@ -217,6 +221,11 @@ export interface Restaurant {
   location: {
     latitude: number;
     longitude: number;
+  };
+  dishes?: {
+    docs?: (string | Dish)[];
+    hasNextPage?: boolean;
+    totalDocs?: number;
   };
   /**
    * Leaves the shop; past orders stay.
@@ -323,6 +332,9 @@ export interface Admin {
 export interface Dish {
   id: string;
   name: string;
+  /**
+   * Add new dishes from the restaurant's menu.
+   */
   restaurant: string | Restaurant;
   slug: string;
   section: string;
@@ -397,7 +409,13 @@ export interface Deal {
   title?: string | null;
   dish: string | Dish;
   percentOff: number;
+  /**
+   * From midnight
+   */
   startsAt: string;
+  /**
+   * Until midnight
+   */
   endsAt: string;
   cancelled?: boolean | null;
   createdBy?: {
@@ -704,6 +722,7 @@ export interface RestaurantsSelect<T extends boolean = true> {
         latitude?: T;
         longitude?: T;
       };
+  dishes?: T;
   archived?: T;
   createdBy?: T;
   updatedBy?: T;
@@ -977,8 +996,10 @@ export interface PayloadLlmInstructionsSelect<T extends boolean = true> {
 export interface DealPlanner {
   id: string;
   enabled?: boolean | null;
+  /**
+   * Every deal runs until midnight; a dish gets one deal a day at most.
+   */
   concurrent: number;
-  durationsMinutes: number[];
   percentages: number[];
   minimumPrice: number;
   createdBy?: {
@@ -1072,7 +1093,6 @@ export interface CoachSuggestion {
 export interface DealPlannerSelect<T extends boolean = true> {
   enabled?: T;
   concurrent?: T;
-  durationsMinutes?: T;
   percentages?: T;
   minimumPrice?: T;
   createdBy?: T;

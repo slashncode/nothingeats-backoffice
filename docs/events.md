@@ -35,7 +35,7 @@ A dish event can arrive before its restaurant's event; consumers wait for (or re
 
 | `type` | `data` |
 |---|---|
-| `nothingeats.backoffice.deal.published.v1` | `dealId`, `dishId`, `percentOff` (5–90), `startsAt`, `endsAt`, `cancelled` |
+| `nothingeats.backoffice.deal.published.v1` | `dealId`, `dishId`, `percentOff` (5–90), `startsAt`, `endsAt` (midnight to midnight in Hamburg: editors pick whole days), `cancelled` |
 
 Scheduled by an editor. Catalog prices it from the dish's price at the time and plans its own deals around it.
 
@@ -43,7 +43,7 @@ Scheduled by an editor. Catalog prices it from the dish's price at the time and 
 
 | `type` | `data` |
 |---|---|
-| `nothingeats.backoffice.deal-planner.published.v1` | `enabled`, `concurrent`, `durationsMinutes` (list), `percentages` (list), `minimumPriceCents` |
+| `nothingeats.backoffice.deal-planner.published.v1` | `enabled`, `concurrent`, `percentages` (list), `minimumPriceCents` (planner deals run until midnight in Hamburg) |
 
 ## `backoffice.badge.v1` → loyalty
 

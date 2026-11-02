@@ -1,30 +1,28 @@
 import type { CollectionConfig } from 'payload';
 
+import { endOfHamburgDay, hamburgDay, startOfHamburgDay } from '../deals/days';
 import { publishDocument } from '../publishing';
 
 export const DEAL_TOPIC = 'backoffice.deal.v1';
 
-function after(value: unknown, { siblingData }: { siblingData: Record<string, unknown> }): true | string {
-    const start = siblingData.startsAt
-        ? new Date(siblingData.startsAt as string).getTime()
-        : Number.NaN;
-    const end = value
-        ? new Date(value as string).getTime()
-        : Number.NaN;
-    return end > start
+function notBeforeFirstDay(value: unknown, { siblingData }: { siblingData: Record<string, unknown> }): true | string {
+    if (!value || !siblingData.startsAt)
+        return 'Pick the last day';
+    return hamburgDay(value as string) >= hamburgDay(siblingData.startsAt as string)
         ? true
-        : 'Must be after the start';
+        : 'The last day cannot be before the first';
 }
 
 /**
- * Flash deals an editor schedules. Catalog plans its own on top (settings: the deal planner global)
- * and leaves a dish alone while a scheduled deal runs. A deal is never deleted, only cancelled.
+ * Deals an editor schedules for whole days: from midnight of the first day to midnight after the
+ * last, in Hamburg. Catalog plans its own on top (settings: the deal planner global) and leaves a
+ * dish alone while a scheduled deal runs. A deal is never deleted, only cancelled.
  */
 export const Deals: CollectionConfig = {
     slug: 'deals',
     labels: {
-        singular: { de: 'Blitzdeal', en: 'Flash deal' },
-        plural: { de: 'Blitzdeals', en: 'Flash deals' },
+        singular: { de: 'Tagesdeal', en: 'Deal of the day' },
+        plural: { de: 'Tagesdeals', en: 'Deals of the day' },
     },
     admin: {
         useAsTitle: 'title',
@@ -51,8 +49,9 @@ export const Deals: CollectionConfig = {
                         ? doc.dish.id
                         : doc.dish,
                     percentOff: doc.percentOff,
-                    startsAt: new Date(doc.startsAt).toISOString(),
-                    endsAt: new Date(doc.endsAt).toISOString(),
+                    // The picked days, as the instants catalog needs.
+                    startsAt: startOfHamburgDay(hamburgDay(doc.startsAt)).toISOString(),
+                    endsAt: endOfHamburgDay(hamburgDay(doc.endsAt)).toISOString(),
                     cancelled: Boolean(doc.cancelled),
                 }),
             }),
@@ -106,19 +105,21 @@ export const Deals: CollectionConfig = {
                     type: 'date',
                     required: true,
                     admin: {
-                        date: { pickerAppearance: 'dayAndTime' },
+                        date: { pickerAppearance: 'dayOnly', displayFormat: 'dd.MM.yyyy' },
+                        description: { de: 'Ab Mitternacht', en: 'From midnight' },
                     },
-                    label: { de: 'Beginn', en: 'Starts' },
+                    label: { de: 'Erster Tag', en: 'First day' },
                 },
                 {
                     name: 'endsAt',
                     type: 'date',
                     required: true,
-                    validate: after,
+                    validate: notBeforeFirstDay,
                     admin: {
-                        date: { pickerAppearance: 'dayAndTime' },
+                        date: { pickerAppearance: 'dayOnly', displayFormat: 'dd.MM.yyyy' },
+                        description: { de: 'Bis Mitternacht', en: 'Until midnight' },
                     },
-                    label: { de: 'Ende', en: 'Ends' },
+                    label: { de: 'Letzter Tag', en: 'Last day' },
                 },
             ],
         },

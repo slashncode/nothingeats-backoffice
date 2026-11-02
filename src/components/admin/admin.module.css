@@ -182,3 +182,9 @@
     color: var(--color-text-secondary);
     font-size: var(--text-body-small-font-size);
 }
+
+.subtitle {
+    margin: 0;
+    font-size: var(--text-body-xl-font-size);
+    font-weight: var(--text-body-xl-bold-font-weight);
+}

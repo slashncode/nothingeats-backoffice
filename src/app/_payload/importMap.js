@@ -25,6 +25,7 @@ import { ItalicFeatureClient as ItalicFeatureClient_e70f5e05f09f93e00b997edb1ef0
 import { LLMInstructionsDescription as LLMInstructionsDescription_3817bf644402e67bfe6577f60ef982de } from '@payloadcms/ui'
 import { FixedToolbarFeatureClient as FixedToolbarFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from '@payloadcms/richtext-lexical/client'
 import { LLMInstructionsCell as LLMInstructionsCell_ab83ff7e88da8d3530831f296ec4756a } from '@payloadcms/ui/rsc'
+import { RunningDeals as RunningDeals_9fecada16805186b3d21c810d7c54a6e } from '../../components/deals/RunningDeals'
 import { LogoutButton as LogoutButton_8f8437271bb1185a7d11b63d7e5de4b9 } from '../../components/LogoutButton'
 import { OperationsNav as OperationsNav_fa219fde8b798390b0c8518d261026c9 } from '../../components/admin/OperationsNav'
 import { IdentityLogin as IdentityLogin_eddfd23631b1f701bbe2c1a1fa6b5c65 } from '../../components/IdentityLogin'
@@ -72,6 +73,7 @@ export const importMap = {
   "@payloadcms/ui#LLMInstructionsDescription": LLMInstructionsDescription_3817bf644402e67bfe6577f60ef982de,
   "@payloadcms/richtext-lexical/client#FixedToolbarFeatureClient": FixedToolbarFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
   "@payloadcms/ui/rsc#LLMInstructionsCell": LLMInstructionsCell_ab83ff7e88da8d3530831f296ec4756a,
+  "/components/deals/RunningDeals#RunningDeals": RunningDeals_9fecada16805186b3d21c810d7c54a6e,
   "/components/LogoutButton#LogoutButton": LogoutButton_8f8437271bb1185a7d11b63d7e5de4b9,
   "/components/admin/OperationsNav#OperationsNav": OperationsNav_fa219fde8b798390b0c8518d261026c9,
   "/components/IdentityLogin#IdentityLogin": IdentityLogin_eddfd23631b1f701bbe2c1a1fa6b5c65,

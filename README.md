@@ -6,11 +6,12 @@ It is not an admin UI glued onto the services' databases. It is a bounded contex
 
 | Content | Owned here | Reaches the shop |
 |---|---|---|
-| Restaurants, dishes, flash deals, deal planner settings, badges, wheel prizes and odds | yes | outbox → Kafka → catalog / loyalty |
+| Restaurants (with their menu: dishes are added from the restaurant), deals of the day, deal planner settings, badges, wheel prizes and odds | yes | outbox → Kafka → catalog / loyalty |
 | Articles, categories, tags, coach suggestions, text overrides | yes | this service's public API ([`docs/api.md`](docs/api.md)) |
 | Accounts | no (identity) | the view `/admin/accounts` (search, lock, unlock, admin role, delete) calls identity's admin API with the admin's own token |
 | Orders | no (ordering) | `/admin/orders`: every customer's orders with today's counts, filters and details, read only |
 | Coach conversations | no (assistant) | `/admin/coach`: transcripts of the Craving Coach; the assistant logs every read with the admin's id |
+| Running deals | no (catalog) | under the deal planner: catalog's deals now and later; a running planner deal can be ended |
 | Search index | no (search) | `/admin/search-index`: live generation, document counts, reindex on request |
 
 ## Sign-in

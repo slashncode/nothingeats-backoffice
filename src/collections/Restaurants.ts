@@ -192,6 +192,28 @@ export const Restaurants: CollectionConfig = {
             ],
         },
         {
+            // The menu lives here: every dish of the restaurant, and new ones are added from this list
+            // (the dish's restaurant is set and stays). Not stored; it reads the dishes' restaurant.
+            name: 'dishes',
+            type: 'join',
+            collection: 'dishes',
+            on: 'restaurant',
+            defaultSort: ['section', 'position'],
+            defaultLimit: 100,
+            label: { de: 'Speisekarte', en: 'Menu' },
+            admin: {
+                allowCreate: true,
+                defaultColumns: [
+                    'name',
+                    'section',
+                    'position',
+                    'price',
+                    'available',
+                    '_status',
+                ],
+            },
+        },
+        {
             name: 'archived',
             type: 'checkbox',
             defaultValue: false,

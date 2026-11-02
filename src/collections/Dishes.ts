@@ -127,6 +127,17 @@ export const Dishes: CollectionConfig = {
             required: true,
             index: true,
             label: { de: 'Restaurant', en: 'Restaurant' },
+            // Dishes are added from their restaurant's menu, which sets this; it never changes after.
+            access: {
+                update: () => false,
+            },
+            admin: {
+                position: 'sidebar',
+                description: {
+                    de: 'Neue Gerichte legst du in der Speisekarte des Restaurants an.',
+                    en: 'Add new dishes from the restaurant\'s menu.',
+                },
+            },
         },
         {
             name: 'slug',

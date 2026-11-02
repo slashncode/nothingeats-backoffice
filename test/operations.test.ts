@@ -27,7 +27,12 @@ describe('the operations proxy', () => {
     afterAll(() => close());
 
     async function call(method: string, path: string, url: string, routeParams: Record<string, string> = {}) {
-        const services = { ordering: `${base}/api/ordering`, assistant: `${base}/api/assistant`, search: `${base}/api/search` };
+        const services = {
+            catalog: `${base}/api/catalog`,
+            ordering: `${base}/api/ordering`,
+            assistant: `${base}/api/assistant`,
+            search: `${base}/api/search`,
+        };
         const endpoint = operationsEndpoints(services).find(candidate => candidate.method === method && candidate.path === path);
         const request = {
             url,

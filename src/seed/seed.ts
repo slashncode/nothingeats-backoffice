@@ -287,7 +287,6 @@ export async function seed(payload: Payload, directory: string): Promise<SeedRes
             data: {
                 enabled: true,
                 concurrent: 3,
-                durationsMinutes: [30, 45, 60],
                 percentages: [20, 25, 30, 40],
                 minimumPrice: 5,
             },

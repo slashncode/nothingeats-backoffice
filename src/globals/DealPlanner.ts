@@ -11,7 +11,10 @@ function positiveIntegers(value: unknown): true | string {
         : 'At least one whole number above 0';
 }
 
-/** How catalog's planner keeps deals running between the scheduled ones. */
+/**
+ * How catalog's planner keeps deals running between the scheduled ones. Every planner deal runs
+ * until midnight; the deals running now are listed here and can be ended (catalog's admin API).
+ */
 export const DealPlanner: GlobalConfig = {
     slug: 'deal-planner',
     label: { de: 'Deal-Planer', en: 'Deal planner' },
@@ -26,7 +29,6 @@ export const DealPlanner: GlobalConfig = {
                 snapshot: doc => ({
                     enabled: Boolean(doc.enabled),
                     concurrent: doc.concurrent,
-                    durationsMinutes: doc.durationsMinutes,
                     percentages: doc.percentages,
                     minimumPriceCents: cents(doc.minimumPrice),
                 }),
@@ -48,15 +50,12 @@ export const DealPlanner: GlobalConfig = {
             max: 20,
             defaultValue: 3,
             label: { de: 'Deals gleichzeitig', en: 'Deals at once' },
-        },
-        {
-            name: 'durationsMinutes',
-            type: 'number',
-            hasMany: true,
-            required: true,
-            defaultValue: [30, 45, 60],
-            validate: positiveIntegers,
-            label: { de: 'Laufzeiten (Minuten)', en: 'Durations (minutes)' },
+            admin: {
+                description: {
+                    de: 'Jeder Deal läuft bis Mitternacht; ein Gericht bekommt höchstens einen Deal am Tag.',
+                    en: 'Every deal runs until midnight; a dish gets one deal a day at most.',
+                },
+            },
         },
         {
             name: 'percentages',
@@ -75,6 +74,14 @@ export const DealPlanner: GlobalConfig = {
             validate: euros,
             admin: { step: 0.01 },
             label: { de: 'Nur Gerichte ab (€)', en: 'Only dishes from (€)' },
+        },
+        {
+            // Not stored: catalog's deals right now, with a button to end the planner's.
+            name: 'runningDeals',
+            type: 'ui',
+            admin: {
+                components: { Field: '/components/deals/RunningDeals#RunningDeals' },
+            },
         },
     ],
 };
