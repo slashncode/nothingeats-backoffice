@@ -177,37 +177,39 @@ export function OrdersClient({ restaurants }: { restaurants: { slug: string; nam
                                 </tr>
                                 {open === order.id && (
                                     <tr>
-                                        <td colSpan={7} className={styles.detail}>
-                                            <dl>
-                                                <dt>{t('backoffice:ordersLines')}</dt>
-                                                <dd>
-                                                    {order.lines.map(line => (
-                                                        <div key={line.dishId}>
-                                                            {`${line.quantity} × ${line.name} – ${formatMoney(line.totalCents, language)}`}
-                                                        </div>
-                                                    ))}
-                                                </dd>
-                                                {order.couponCode && (
-                                                    <>
-                                                        <dt>{t('backoffice:ordersCoupon')}</dt>
-                                                        <dd>{`${order.couponCode} (−${formatMoney(order.discountCents, language)})`}</dd>
-                                                    </>
-                                                )}
-                                                <dt>{t('backoffice:ordersDropOff')}</dt>
-                                                <dd>{order.dropOff.label ?? `${order.dropOff.latitude.toFixed(4)}, ${order.dropOff.longitude.toFixed(4)}`}</dd>
-                                                <dt>{t('backoffice:ordersQuote')}</dt>
-                                                <dd>
-                                                    {t(order.quoteSource === 'delivery'
-                                                        ? 'backoffice:ordersQuoteDelivery'
-                                                        : 'backoffice:ordersQuoteEstimate', {
-                                                        minutes: Math.round(quotedSeconds / 60),
-                                                    })}
-                                                </dd>
-                                                <dt>{t('backoffice:ordersArrival')}</dt>
-                                                <dd>{formatDateTime(order.estimatedArrivalAt, language)}</dd>
-                                                <dt>{t('backoffice:ordersLanguage')}</dt>
-                                                <dd>{orderLanguage}</dd>
-                                            </dl>
+                                        <td colSpan={7}>
+                                            <div className={styles.detail}>
+                                                <dl className={styles.facts}>
+                                                    <dt>{t('backoffice:ordersLines')}</dt>
+                                                    <dd>
+                                                        {order.lines.map(line => (
+                                                            <div key={line.dishId}>
+                                                                {`${line.quantity} × ${line.name} – ${formatMoney(line.totalCents, language)}`}
+                                                            </div>
+                                                        ))}
+                                                    </dd>
+                                                    {order.couponCode && (
+                                                        <>
+                                                            <dt>{t('backoffice:ordersCoupon')}</dt>
+                                                            <dd>{`${order.couponCode} (−${formatMoney(order.discountCents, language)})`}</dd>
+                                                        </>
+                                                    )}
+                                                    <dt>{t('backoffice:ordersDropOff')}</dt>
+                                                    <dd>{order.dropOff.label ?? `${order.dropOff.latitude.toFixed(4)}, ${order.dropOff.longitude.toFixed(4)}`}</dd>
+                                                    <dt>{t('backoffice:ordersQuote')}</dt>
+                                                    <dd>
+                                                        {t(order.quoteSource === 'delivery'
+                                                            ? 'backoffice:ordersQuoteDelivery'
+                                                            : 'backoffice:ordersQuoteEstimate', {
+                                                            minutes: Math.round(quotedSeconds / 60),
+                                                        })}
+                                                    </dd>
+                                                    <dt>{t('backoffice:ordersArrival')}</dt>
+                                                    <dd>{formatDateTime(order.estimatedArrivalAt, language)}</dd>
+                                                    <dt>{t('backoffice:ordersLanguage')}</dt>
+                                                    <dd>{orderLanguage}</dd>
+                                                </dl>
+                                            </div>
                                         </td>
                                     </tr>
                                 )}

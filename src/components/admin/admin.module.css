@@ -119,14 +119,18 @@
     background: var(--color-bg-secondary);
 }
 
-.detail dl {
+.facts {
     display: grid;
     grid-template-columns: max-content 1fr;
     gap: var(--spacer-1) var(--spacer-3);
     margin: 0;
 }
 
-.detail dd {
+.facts dt {
+    color: var(--color-text-secondary);
+}
+
+.facts dd {
     margin: 0;
 }
 

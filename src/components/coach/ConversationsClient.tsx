@@ -125,9 +125,10 @@ export function ConversationsClient() {
                             text,
                             tool: part.type !== 'text',
                         })));
-                        if (lines.length === 0)
-                            return null;
                         const user = message.role === 'user';
+                        // A turn that failed leaves an empty reply; an admin should see that it did.
+                        if (lines.length === 0 && user)
+                            return null;
                         return (
                             <div key={message.id} className={`${styles.message} ${user ? styles.messageUser : ''}`}>
                                 <span className={styles.messageRole}>
@@ -135,6 +136,7 @@ export function ConversationsClient() {
                                         ? t('backoffice:coachCustomer')
                                         : t('backoffice:coachCoach')}
                                 </span>
+                                {lines.length === 0 && <p className={styles.tool}>{t('backoffice:coachNoAnswer')}</p>}
                                 {lines.map(line => <p key={line.key} className={line.tool ? styles.tool : undefined}>{line.text}</p>)}
                             </div>
                         );

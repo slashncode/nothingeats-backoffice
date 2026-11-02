@@ -86,7 +86,7 @@ export function SearchIndexClient() {
                             <dd>{status.restaurants}</dd>
                         </div>
                     </dl>
-                    <dl className={styles.detail}>
+                    <dl className={`${styles.detail} ${styles.facts}`}>
                         <dt>{t('backoffice:searchLive')}</dt>
                         <dd>{status.live ?? '–'}</dd>
                         <dt>{t('backoffice:searchLast')}</dt>
