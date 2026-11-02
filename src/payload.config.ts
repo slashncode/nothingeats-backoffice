@@ -7,6 +7,7 @@ import { sharpTransformer } from '@payloadcms/transformer-sharp';
 import { buildConfig } from 'payload';
 
 import { accountEndpoints } from './accounts/api';
+import { operationsEndpoints } from './admin/endpoints';
 import { admins } from './collections/Admins';
 import { ArticleCategories } from './collections/ArticleCategories';
 import { Articles } from './collections/Articles';
@@ -56,10 +57,14 @@ export default buildConfig({
             logout: {
                 Button: '/components/LogoutButton#LogoutButton',
             },
-            afterNavLinks: ['/components/accounts/AccountsNavLink#AccountsNavLink'],
+            afterNavLinks: ['/components/admin/OperationsNav#OperationsNav'],
             views: {
                 // The shop's accounts live in identity; this view edits them through its admin API.
                 accounts: { Component: '/components/accounts/AccountsView#AccountsView', path: '/accounts' },
+                // Read through ordering, assistant and search; nothing of theirs is stored here.
+                orders: { Component: '/components/orders/OrdersView#OrdersView', path: '/orders' },
+                coach: { Component: '/components/coach/CoachView#CoachView', path: '/coach' },
+                searchIndex: { Component: '/components/search/SearchIndexView#SearchIndexView', path: '/search-index' },
             },
         },
     },
@@ -115,6 +120,7 @@ export default buildConfig({
         ...healthEndpoints,
         ...contentEndpoints,
         ...accountEndpoints(config.identity),
+        ...operationsEndpoints(config.services),
     ],
     onInit: async (payload) => {
         if (config.seed.onEmpty) {

@@ -12,6 +12,10 @@ const environment = z.object({
     PAYLOAD__SECRET: z.string().min(32),
     // Admins are identity accounts with role `admin`; their tokens are checked like in every service.
     IDENTITY__URL: z.url().default('http://nothingeats.localhost/api/identity'),
+    // The services whose admin APIs the operations views read (orders, coach transcripts, search index).
+    ORDERING__URL: z.url().default('http://nothingeats.localhost/api/ordering'),
+    ASSISTANT__URL: z.url().default('http://nothingeats.localhost/api/assistant'),
+    SEARCH__URL: z.url().default('http://nothingeats.localhost/api/search'),
     JWT__ISSUER: z.string().default('http://nothingeats.localhost/api/identity'),
     JWT__AUDIENCE: z.string().default('nothingeats'),
     JWT__JWKS_URL: z.url().default('http://nothingeats.localhost/api/identity/.well-known/jwks.json'),
@@ -41,6 +45,7 @@ export interface Config {
     database: { url: string; user: string; password: string; maximumPoolSize: number };
     payload: { secret: string };
     identity: { url: string };
+    services: { ordering: string; assistant: string; search: string };
     jwt: { issuer: string; audience: string; jwksUrl: string };
     cookie: { secure: boolean };
     s3: { endpoint: string; region: string; bucket: string; accessKey: string; secretKey: string };
@@ -68,6 +73,7 @@ export function loadConfig(source: Record<string, string | undefined> = process.
         },
         payload: { secret: env.PAYLOAD__SECRET },
         identity: { url: env.IDENTITY__URL },
+        services: { ordering: env.ORDERING__URL, assistant: env.ASSISTANT__URL, search: env.SEARCH__URL },
         jwt: { issuer: env.JWT__ISSUER, audience: env.JWT__AUDIENCE, jwksUrl: env.JWT__JWKS_URL },
         cookie: { secure: env.COOKIE__SECURE },
         s3: {

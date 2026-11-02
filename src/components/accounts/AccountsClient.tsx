@@ -4,7 +4,7 @@ import type { BackofficeTranslationKeys, BackofficeTranslations } from '../../i1
 import { Button, ConfirmationModal, useModal, useTranslation } from '@payloadcms/ui';
 import { useCallback, useEffect, useRef, useState } from 'react';
 
-import styles from './accounts.module.css';
+import styles from '../admin/admin.module.css';
 
 interface Account {
     id: string;

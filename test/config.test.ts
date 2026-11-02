@@ -17,6 +17,13 @@ describe('the Payload config', () => {
             'get /v1/admin/accounts',
             'put /v1/admin/accounts/:id/lock',
             'delete /v1/admin/accounts/:id',
+            'get /v1/admin/orders',
+            'get /v1/admin/orders/today',
+            'get /v1/admin/orders/:id',
+            'get /v1/admin/conversations',
+            'get /v1/admin/conversations/:id',
+            'get /v1/admin/search/index',
+            'post /v1/admin/search/reindex',
         ]));
     });
 });

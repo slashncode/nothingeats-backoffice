@@ -26,10 +26,13 @@ import { LLMInstructionsDescription as LLMInstructionsDescription_3817bf644402e6
 import { FixedToolbarFeatureClient as FixedToolbarFeatureClient_e70f5e05f09f93e00b997edb1ef0c864 } from '@payloadcms/richtext-lexical/client'
 import { LLMInstructionsCell as LLMInstructionsCell_ab83ff7e88da8d3530831f296ec4756a } from '@payloadcms/ui/rsc'
 import { LogoutButton as LogoutButton_8f8437271bb1185a7d11b63d7e5de4b9 } from '../../components/LogoutButton'
-import { AccountsNavLink as AccountsNavLink_61e761074fa9661ed217e29fa718b2fd } from '../../components/accounts/AccountsNavLink'
+import { OperationsNav as OperationsNav_fa219fde8b798390b0c8518d261026c9 } from '../../components/admin/OperationsNav'
 import { IdentityLogin as IdentityLogin_eddfd23631b1f701bbe2c1a1fa6b5c65 } from '../../components/IdentityLogin'
 import { SessionKeeper as SessionKeeper_97617d0d29f7ce254d52952549197e42 } from '../../components/SessionKeeper'
 import { AccountsView as AccountsView_c84ec78701c8b85a431b85105841ecf3 } from '../../components/accounts/AccountsView'
+import { OrdersView as OrdersView_773ad4ea69a0e18c82b7a4f18095458a } from '../../components/orders/OrdersView'
+import { CoachView as CoachView_5b35ba6fbe32b62ec429684c19a16a41 } from '../../components/coach/CoachView'
+import { SearchIndexView as SearchIndexView_79babc4b4ccca677b8b773a16e106061 } from '../../components/search/SearchIndexView'
 import { WelcomeWidget as WelcomeWidget_ab83ff7e88da8d3530831f296ec4756a } from '@payloadcms/ui/rsc'
 import { CollectionCards as CollectionCards_ab83ff7e88da8d3530831f296ec4756a } from '@payloadcms/ui/rsc'
 import { CollectionQueryWidget as CollectionQueryWidget_ab83ff7e88da8d3530831f296ec4756a } from '@payloadcms/ui/rsc'
@@ -70,10 +73,13 @@ export const importMap = {
   "@payloadcms/richtext-lexical/client#FixedToolbarFeatureClient": FixedToolbarFeatureClient_e70f5e05f09f93e00b997edb1ef0c864,
   "@payloadcms/ui/rsc#LLMInstructionsCell": LLMInstructionsCell_ab83ff7e88da8d3530831f296ec4756a,
   "/components/LogoutButton#LogoutButton": LogoutButton_8f8437271bb1185a7d11b63d7e5de4b9,
-  "/components/accounts/AccountsNavLink#AccountsNavLink": AccountsNavLink_61e761074fa9661ed217e29fa718b2fd,
+  "/components/admin/OperationsNav#OperationsNav": OperationsNav_fa219fde8b798390b0c8518d261026c9,
   "/components/IdentityLogin#IdentityLogin": IdentityLogin_eddfd23631b1f701bbe2c1a1fa6b5c65,
   "/components/SessionKeeper#SessionKeeper": SessionKeeper_97617d0d29f7ce254d52952549197e42,
   "/components/accounts/AccountsView#AccountsView": AccountsView_c84ec78701c8b85a431b85105841ecf3,
+  "/components/orders/OrdersView#OrdersView": OrdersView_773ad4ea69a0e18c82b7a4f18095458a,
+  "/components/coach/CoachView#CoachView": CoachView_5b35ba6fbe32b62ec429684c19a16a41,
+  "/components/search/SearchIndexView#SearchIndexView": SearchIndexView_79babc4b4ccca677b8b773a16e106061,
   "@payloadcms/ui/rsc#WelcomeWidget": WelcomeWidget_ab83ff7e88da8d3530831f296ec4756a,
   "@payloadcms/ui/rsc#CollectionCards": CollectionCards_ab83ff7e88da8d3530831f296ec4756a,
   "@payloadcms/ui/rsc#CollectionQueryWidget": CollectionQueryWidget_ab83ff7e88da8d3530831f296ec4756a,
