@@ -2,7 +2,7 @@ import type { SerializedEditorState } from '@payloadcms/richtext-lexical/lexical
 import type { Endpoint, PayloadRequest, Where } from 'payload';
 import { convertLexicalToHTML, defaultHTMLConverters, LinkHTMLConverter } from '@payloadcms/richtext-lexical/html';
 
-// The content the backoffice serves itself (journal record 040): the magazine, the coach's
+// The content the backoffice serves itself (journal record 040): the blog, the coach's
 // suggestions and the text overrides. Read-only, public, short-cached; contract in docs/api.md.
 
 type Language = 'de' | 'en';
@@ -88,7 +88,7 @@ const converters = LinkHTMLConverter({
         if (!target?.slug)
             return '#';
         switch (doc?.relationTo) {
-            case 'articles': return `/articles/${target.slug}`;
+            case 'articles': return `/blog/${target.slug}`;
             case 'restaurants': return `/restaurants/${target.slug}`;
             default: return '#';
         }

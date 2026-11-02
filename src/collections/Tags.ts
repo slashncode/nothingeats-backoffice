@@ -12,7 +12,7 @@ export const Tags: CollectionConfig = {
     admin: {
         useAsTitle: 'name',
         defaultColumns: ['name', 'slug'],
-        group: { de: 'Magazin', en: 'Magazine' },
+        group: { de: 'Blog', en: 'Blog' },
     },
     versions: false,
     access: {

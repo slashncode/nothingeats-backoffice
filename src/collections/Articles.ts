@@ -3,7 +3,7 @@ import type { CollectionConfig } from 'payload';
 import { slug } from '../catalog/validation';
 
 /**
- * The magazine: articles in German and English, served to the shop by this service itself (no
+ * The blog: articles in German and English, served to the shop by this service itself (no
  * events: nothing else needs them). Each language is published on its own; a language that is not
  * published is not shown in that language.
  */
@@ -21,7 +21,7 @@ export const Articles: CollectionConfig = {
             'publishedAt',
             '_status',
         ],
-        group: { de: 'Magazin', en: 'Magazine' },
+        group: { de: 'Blog', en: 'Blog' },
     },
     defaultSort: '-publishedAt',
     versions: { drafts: true },

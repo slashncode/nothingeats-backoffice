@@ -2,7 +2,7 @@ import type { CollectionConfig } from 'payload';
 
 import { slug } from '../catalog/validation';
 
-/** Sections of the magazine, e.g. "Rezepte, die du nie kochst". */
+/** Sections of the blog, e.g. "Rezepte, die du nie kochst". */
 export const ArticleCategories: CollectionConfig = {
     slug: 'article-categories',
     labels: {
@@ -12,7 +12,7 @@ export const ArticleCategories: CollectionConfig = {
     admin: {
         useAsTitle: 'name',
         defaultColumns: ['name', 'slug', 'position'],
-        group: { de: 'Magazin', en: 'Magazine' },
+        group: { de: 'Blog', en: 'Blog' },
     },
     defaultSort: 'position',
     versions: false,
