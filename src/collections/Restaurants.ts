@@ -198,7 +198,8 @@ export const Restaurants: CollectionConfig = {
             type: 'join',
             collection: 'dishes',
             on: 'restaurant',
-            defaultSort: ['section', 'position'],
+            // Not by `section`: Payload 4.0.0-beta.6 breaks a join's query when it sorts by a localized field.
+            defaultSort: 'position',
             defaultLimit: 100,
             label: { de: 'Speisekarte', en: 'Menu' },
             admin: {
