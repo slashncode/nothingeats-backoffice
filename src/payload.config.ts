@@ -46,6 +46,8 @@ function withCredentials(url: string, user: string, password: string): string {
 export default buildConfig({
     admin: {
         user: Admins.slug,
+        // Payload's default is Gravatar, which sends a hash of the admin's address to a third party.
+        avatar: 'default',
         importMap: {
             baseDir: path.resolve(dirname),
         },
