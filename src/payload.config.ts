@@ -140,7 +140,7 @@ export default buildConfig({
             return;
         startTextSync(payload, config.texts.defaultsUrl, config.texts.syncMinutes * 60_000);
         startRelay(payload, {
-            bootstrapServers: config.kafka.bootstrapServers,
+            kafka: config.kafka,
             pollIntervalMs: config.outbox.pollIntervalMs,
             batchSize: 100,
             maxBackoffMs: 30_000,

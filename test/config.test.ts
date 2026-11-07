@@ -29,3 +29,21 @@ describe('the Payload config', () => {
         ]));
     });
 });
+
+describe('the configuration', () => {
+    const base = {
+        PAYLOAD__SECRET: 'x'.repeat(32),
+    };
+
+    it('signs in to Kafka with SCRAM only when a user is given, and never without a password', async () => {
+        const { loadConfig } = await import('../src/config');
+
+        expect(loadConfig(base).kafka).toEqual({
+            bootstrapBrokers: ['localhost:19094'],
+        });
+        expect(loadConfig({ ...base, KAFKA__SASL__USERNAME: 'developer', KAFKA__SASL__PASSWORD: 'secret' }).kafka.sasl)
+            .toEqual({ mechanism: 'SCRAM-SHA-512', username: 'developer', password: 'secret' });
+        expect(() => loadConfig({ ...base, KAFKA__SASL__USERNAME: 'developer' }))
+            .toThrow('KAFKA__SASL__PASSWORD: is required with KAFKA__SASL__USERNAME');
+    });
+});

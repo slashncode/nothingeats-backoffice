@@ -30,6 +30,9 @@ const environment = z.object({
     // Public path of the bucket (Garage's website endpoint behind the gateway).
     MEDIA__PUBLIC_PATH: z.string().default('/media'),
     KAFKA__BOOTSTRAP_SERVERS: z.string().default('localhost:19094'),
+    // The cluster's listener for the host wants a SCRAM login; the pods' own listener has none.
+    KAFKA__SASL__USERNAME: z.string().optional(),
+    KAFKA__SASL__PASSWORD: z.string().optional(),
     // Only the serving process relays; CLI runs (types, import map, migrations) leave it off.
     OUTBOX__RELAY_ENABLED: z.stringbool().default(false),
     OUTBOX__POLL_INTERVAL_MS: z.coerce.number().int().positive().default(500),
@@ -40,7 +43,16 @@ const environment = z.object({
     // Where the deployed shop publishes its default texts (`<namespace>.<language>.json`).
     TEXTS__DEFAULTS_URL: z.url().default('http://nothingeats.localhost/locales'),
     TEXTS__SYNC_MINUTES: z.coerce.number().int().positive().default(10),
+}).refine(env => !env.KAFKA__SASL__USERNAME || env.KAFKA__SASL__PASSWORD, {
+    message: 'is required with KAFKA__SASL__USERNAME',
+    path: ['KAFKA__SASL__PASSWORD'],
 });
+
+/** Where the broker is and how to sign in: spread into the Kafka client's options. */
+export interface KafkaConnection {
+    bootstrapBrokers: string[];
+    sasl?: { mechanism: 'SCRAM-SHA-512'; username: string; password: string };
+}
 
 export interface Config {
     database: { url: string; user: string; password: string; maximumPoolSize: number };
@@ -51,7 +63,7 @@ export interface Config {
     cookie: { secure: boolean };
     s3: { endpoint: string; region: string; bucket: string; accessKey: string; secretKey: string };
     media: { publicPath: string };
-    kafka: { bootstrapServers: string[] };
+    kafka: KafkaConnection;
     outbox: { relayEnabled: boolean; pollIntervalMs: number; retentionDays: number };
     seed: { onEmpty: boolean; directory: string };
     texts: { defaultsUrl: string; syncMinutes: number };
@@ -91,7 +103,12 @@ export function loadConfig(source: Record<string, string | undefined> = process.
         },
         media: { publicPath: env.MEDIA__PUBLIC_PATH },
         kafka: {
-            bootstrapServers: env.KAFKA__BOOTSTRAP_SERVERS.split(',').map(server => server.trim()),
+            bootstrapBrokers: env.KAFKA__BOOTSTRAP_SERVERS.split(',').map(server => server.trim()),
+            ...(env.KAFKA__SASL__USERNAME
+                ? {
+                        sasl: { mechanism: 'SCRAM-SHA-512', username: env.KAFKA__SASL__USERNAME, password: env.KAFKA__SASL__PASSWORD! },
+                    }
+                : {}),
         },
         outbox: {
             relayEnabled: env.OUTBOX__RELAY_ENABLED,

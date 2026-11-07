@@ -1,12 +1,13 @@
 import type { PostgresAdapter } from '@payloadcms/db-postgres';
 import type { Payload } from 'payload';
+import type { KafkaConnection } from '../config';
 import { and, asc, inArray, isNotNull, isNull, lt } from '@payloadcms/db-postgres/drizzle';
-import { ProduceAcks, Producer, stringSerializers } from '@platformatic/kafka';
 
+import { ProduceAcks, Producer, stringSerializers } from '@platformatic/kafka';
 import { outboxEvents } from './table';
 
 export interface RelayConfig {
-    bootstrapServers: string[];
+    kafka: KafkaConnection;
     pollIntervalMs: number;
     batchSize: number;
     maxBackoffMs: number;
@@ -31,8 +32,8 @@ export class OutboxRelay {
 
     constructor(private readonly payload: Payload, private readonly config: RelayConfig) {
         this.producer = new Producer({
+            ...config.kafka,
             clientId: 'backoffice-outbox',
-            bootstrapBrokers: config.bootstrapServers,
             serializers: stringSerializers,
             acks: ProduceAcks.ALL,
             idempotent: true,
