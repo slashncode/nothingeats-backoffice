@@ -19,3 +19,10 @@ trustPolicyExclude:
   - semver@6.3.1
 patchedDependencies:
   '@payloadcms/drizzle@4.0.0-beta.6': patches/@payloadcms__drizzle@4.0.0-beta.6.patch
+
+# Security fixes below what Payload 4's beta pins. Drop each once Payload's own range includes it.
+overrides:
+  # monaco-editor (Payload's code fields) pins dompurify 3.4.15: several XSS advisories, fixed in 3.4.17.
+  dompurify@<3.4.17: 3.4.17
+  # drizzle-kit loads its config through @esbuild-kit, which wants esbuild 0.18 (dev-server advisory).
+  esbuild@<0.25.0: 0.25.12
