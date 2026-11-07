@@ -25,6 +25,7 @@ import { DealPlanner } from './globals/DealPlanner';
 import { Wheel } from './globals/Wheel';
 import { healthEndpoints } from './health';
 import { i18n } from './i18n';
+import { productionLogger } from './logging';
 import { migrations } from './migrations';
 import { startRelay } from './outbox/relay';
 import { outboxEvents } from './outbox/table';
@@ -91,6 +92,10 @@ export default buildConfig({
         commands: { seed: seedCommand },
     },
     i18n,
+    // The image logs JSON; development keeps Payload's readable default.
+    logger: process.env.NODE_ENV === 'production'
+        ? productionLogger()
+        : undefined,
     editor: lexicalEditor(),
     secret: config.payload.secret,
     typescript: {

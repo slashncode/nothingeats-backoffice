@@ -254,6 +254,9 @@ importers:
       eslint-plugin-react-refresh:
         specifier: ^0.5.7
         version: 0.5.7(eslint@10.14.0(jiti@2.7.0))
+      pino:
+        specifier: 10.3.1
+        version: 10.3.1
       typescript:
         specifier: ~6.0.3
         version: 6.0.3
